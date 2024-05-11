@@ -22,7 +22,7 @@ public class MainFrame extends JFrame implements ActionListener {
 	public MainFrame() {
 		initData();
 		setInitLayout();
-		addEventListner();
+		addEventListner(); 
 	}
 
 	private void initData() {
