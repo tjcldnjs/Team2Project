@@ -26,7 +26,7 @@ public class MainFrame extends JFrame{
 	public MainFrame() {
 		initData();
 		setInitLayout();
-		addEventListner();
+		addEventListner(); 
 	}
 
 	private void initData() {
