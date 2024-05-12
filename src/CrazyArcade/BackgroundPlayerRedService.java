@@ -18,22 +18,25 @@ public class BackgroundPlayerRedService implements Runnable {
 
 	public BackgroundPlayerRedService(PlayerRed player) {
 		this.playerRed = player;
-
+//
 //		try {
-//			image = ImageIO.read(new File("imgca/background.png"));
+//			image = ImageIO.read(new File("img/background_test_1010.png"));
 //		} catch (IOException e) {
 //			e.printStackTrace();
 //		}
 		image = playerRed.mContext.newBI;
+		System.out.println(image.getHeight());
 	}
 
 	@Override
 	public void run() {
 		while (true) {
+			
 			Color leftColor = new Color(image.getRGB(playerRed.getX()+10, playerRed.getY() + 50));
 			Color rightColor = new Color(image.getRGB(playerRed.getX() + 100, playerRed.getY() + 50));
 			Color upColor = new Color(image.getRGB(playerRed.getX() + 50, playerRed.getY()));
 			Color downColor = new Color(image.getRGB(playerRed.getX() + 50, playerRed.getY() + 100));
+			System.out.println(rightColor.getRed());
 
 //			if(bottomColorLeft + bottomColorRight != -2) {
 //				player.setDown(false);
@@ -43,22 +46,22 @@ public class BackgroundPlayerRedService implements Runnable {
 //				}
 //			}
 
-			if (leftColor.getRed() == 230 && leftColor.getGreen() == 0 && leftColor.getBlue() == 18) {
+			if (leftColor.getRed() == 255 && leftColor.getGreen() == 0 && leftColor.getBlue() == 0) {
 				System.out.println("빨간벽 충돌");
 				playerRed.setLeftWallCrash(true);
 				playerRed.setLeft(false);
 
-			} else if (rightColor.getRed() == 230 && rightColor.getGreen() == 0 && rightColor.getBlue() == 18) {
+			} else if (rightColor.getRed() == 255 && rightColor.getGreen() == 0 && rightColor.getBlue() == 0) {
 				System.out.println("빨간벽 충돌");
 				playerRed.setRightWallCrash(true);
 				playerRed.setRight(false);
 
-			} else if (upColor.getRed() == 230 && upColor.getGreen() == 0 && upColor.getBlue() == 18) {
+			} else if (upColor.getRed() == 255 && upColor.getGreen() == 0 && upColor.getBlue() == 0) {
 				System.out.println("빨간벽 충돌");
 				playerRed.setUpWallCrash(true);
 				playerRed.setUp(false);
 
-			} else if (downColor.getRed() == 230 && downColor.getGreen() == 0 && downColor.getBlue() == 18) {
+			} else if (downColor.getRed() == 255 && downColor.getGreen() == 0 && downColor.getBlue() == 0) {
 				System.out.println("빨간벽 충돌");
 				playerRed.setDownWallCrash(true);
 				playerRed.setDown(false);

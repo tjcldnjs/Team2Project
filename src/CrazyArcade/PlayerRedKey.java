@@ -14,13 +14,11 @@ public class PlayerRedKey implements Runnable{
 	public PlayerRedKey(MainFrame mContext, PlayerRed playerRed) {
 		this.mContext = mContext;
 		this.playerRed = playerRed;
-		System.out.println("1번 ");
 	}
 	
 	@Override
 	public void run() {
-		System.out.println("SADf");
-		mContext.addKeyListener(new KeyAdapter() {
+		mContext.panelCenter.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
@@ -29,12 +27,7 @@ public class PlayerRedKey implements Runnable{
 				
 				switch (e.getKeyCode()) {
 				
-				case KeyEvent.VK_0:
-					System.out.println("SsdfdsfasdfADf");
-					if (!playerRed.isLeft() && !playerRed.isLeftWallCrash()) {
-						playerRed.left();
-					}
-					break;
+				
 				case KeyEvent.VK_LEFT:
 					System.out.println("SsdfdsfasdfADf");
 					if (!playerRed.isLeft() && !playerRed.isLeftWallCrash()) {
@@ -70,6 +63,7 @@ public class PlayerRedKey implements Runnable{
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
+					
 					playerRed.setLeft(false);
 					break;
 				case KeyEvent.VK_RIGHT:

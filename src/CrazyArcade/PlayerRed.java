@@ -197,6 +197,9 @@ public class PlayerRed extends JLabel implements Moveable {
 		setIcon(playerD);
 		setSize(100, 100);
 		setLocation(x, y);
+		
+		mContext.panelCenter.add(this);
+		mContext.repaint();
 	}
 
 	@Override
