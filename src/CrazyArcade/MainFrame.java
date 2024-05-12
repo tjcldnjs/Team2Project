@@ -14,10 +14,19 @@ import javax.swing.JPanel;
 
 public class MainFrame extends JFrame{
 
+	MainFrame mContext = this;
+	
 	private JButton startButton;
 	private JPanel panelCenter;
 	private JPanel panelSouth;
+	
+	private UnBreakBox unBreakBox;
+	private BreakBox breakBox;
 
+	BufferedImage newBI;
+	
+	private PlayerRed playerRed;
+	
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY =100;
 
@@ -27,16 +36,19 @@ public class MainFrame extends JFrame{
 		initData();
 		setInitLayout();
 		addEventListner(); 
+		
+		drawMapElements();
+		
 	}
 
 	private void initData() {
-		setSize(1000, 1100);
+		setSize(1000, 1100);//메인 화면 1000,1000과 버튼 공간 1000,100
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		panelCenter = new JPanel();
 		panelSouth = new JPanel();
 		startButton = new JButton();
-
+		
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
 	}
@@ -44,7 +56,7 @@ public class MainFrame extends JFrame{
 	private void setInitLayout() {
 		panelCenter.setLayout(null); // 좌표
 		add(panelCenter, BorderLayout.CENTER);
-		// panelCenter.setBackground(Color.BLUE);
+		 //panelCenter.setBackground(Color.BLUE); 추후 수정 필요 이미지 아이콘으
 		add(panelSouth, BorderLayout.SOUTH);
 		panelSouth.add(startButton, BorderLayout.EAST);
 		// panelSouth.setLayout(new FlowLayout(FlowLayout.RIGHT));
@@ -81,8 +93,15 @@ public class MainFrame extends JFrame{
 						}
 					}
 					createNewBufferdImage();
+					drawMapElements();
 				}
+				playerRed = new PlayerRed(mContext);
+				panelCenter.add(playerRed);
+				new Thread(new PlayerRedKey(mContext, playerRed)).start();
+				new Thread(new BackgroundPlayerRedService(playerRed)).start();
+				
 			}
+			
 			
 		});
 	}
@@ -105,11 +124,31 @@ public class MainFrame extends JFrame{
 		int w = panelCenter.getWidth();
 		int h = panelCenter.getHeight();
 		
-		BufferedImage newBI = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
+		newBI = new BufferedImage(w, h, BufferedImage.TYPE_INT_RGB);
 		Graphics2D g = newBI.createGraphics();
 		panelCenter.paint(g);
 		g.dispose();
 		return newBI;
+	}
+	
+	public void drawMapElements() {
+		for (int i = 0; i < PANELARRAY_SIZE; i++) {
+			for (int j = 0; j < PANELARRAY_SIZE; j++) {
+		
+				if(panelArray[i][j].getBackground() == Color.red) {
+					unBreakBox = new UnBreakBox(mContext, i, j);
+					panelArray[i][j].setUnBreakBox(unBreakBox);
+					panelCenter.add(unBreakBox);
+					
+				}else if(panelArray[i][j].getBackground() == Color.blue) {
+					breakBox = new BreakBox(mContext, i, j);
+					panelArray[i][j].setBreakBox(breakBox);
+					panelCenter.add(breakBox);
+				}
+			
+			}
+		}
+		
 	}
 
 	public static void main(String[] args) {
