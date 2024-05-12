@@ -9,21 +9,32 @@ public class PlayerRedKey implements Runnable{
 	MainFrame mContext;
 	PlayerRed playerRed;
 	
+	
+	
 	public PlayerRedKey(MainFrame mContext, PlayerRed playerRed) {
 		this.mContext = mContext;
 		this.playerRed = playerRed;
+		System.out.println("1번 ");
 	}
 	
 	@Override
 	public void run() {
+		System.out.println("SADf");
 		mContext.addKeyListener(new KeyAdapter() {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
+				
 				System.out.println("key code : " + e.getKeyCode());
-				System.out.println("SADf");
+				
 				switch (e.getKeyCode()) {
-
+				
+				case KeyEvent.VK_0:
+					System.out.println("SsdfdsfasdfADf");
+					if (!playerRed.isLeft() && !playerRed.isLeftWallCrash()) {
+						playerRed.left();
+					}
+					break;
 				case KeyEvent.VK_LEFT:
 					System.out.println("SsdfdsfasdfADf");
 					if (!playerRed.isLeft() && !playerRed.isLeftWallCrash()) {
