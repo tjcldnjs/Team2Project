@@ -26,6 +26,7 @@ public class Bubble extends JLabel {
         bubblePosY = playerRed.getY();
         initData();
         mContext.panelCenter.add(this);
+        System.out.println("123123");
     }
 
     public Bubble(MainFrame mContext, PlayerBlue playerBlue) {

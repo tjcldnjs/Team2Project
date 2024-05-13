@@ -26,13 +26,12 @@ public class MainFrame extends JFrame {
 	JPanel panelCenter;
 	private JPanel panelSouth;
 
-
 	BufferedImage newBI;
 	BackgroundImage backgroundImage;
 
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
-	
+
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
 
@@ -45,7 +44,7 @@ public class MainFrame extends JFrame {
 		initData();
 		panelCenter.setFocusable(true);
 		panelCenter.requestFocusInWindow();
-		setInitLayout();  
+		setInitLayout();
 		// addEventListner();
 		// drawMapElements();
 		testEventListener();
@@ -54,12 +53,12 @@ public class MainFrame extends JFrame {
 		// panelCenter.add(playerRed);
 
 		// isButtonPressed = true;
-		
+
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
-	new Thread(new BackgroundPlayerRedService(playerRed)).start();
+		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
-	new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
-	
+		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
+
 	}
 
 	private void initData() {
@@ -72,10 +71,10 @@ public class MainFrame extends JFrame {
 
 		// ------------------3-----------------
 		playerRed = new PlayerRed(mContext);
-		 playerBlue = new PlayerBlue(mContext);
-		 
-		 playerRed.setVisible(false);
-		 playerBlue.setVisible(false);
+		playerBlue = new PlayerBlue(mContext);
+
+		playerRed.setVisible(false);
+		playerBlue.setVisible(false);
 		// -----------------------------------
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
@@ -138,7 +137,7 @@ public class MainFrame extends JFrame {
 				}
 			}
 			// 1
-		
+
 			panelArray[0][2].setBackground(Color.blue);
 			panelArray[0][4].setBackground(Color.blue);
 			panelArray[0][5].setBackground(Color.red);
@@ -219,14 +218,12 @@ public class MainFrame extends JFrame {
 			panelArray[9][4].setBackground(Color.blue);
 			panelArray[9][5].setBackground(Color.blue);
 			panelArray[9][7].setBackground(Color.blue);
-			
+
 			createNewBufferdImage();
 			drawMapElements();
 		}
 
 	}
-
-	
 
 	// 100개의 panel.getColor 후 panelcenter에 그린후 -> panelcneter ->bufferedImage로 변환
 	// 시키기;
@@ -249,14 +246,14 @@ public class MainFrame extends JFrame {
 		panelCenter.paint(g);
 		g.dispose();
 		try {
-		      // retrieve image
-		    File outputfile = new File("saved.png");
-		    ImageIO.write(newBI, "png", outputfile);
+			// retrieve image
+			File outputfile = new File("saved.png");
+			ImageIO.write(newBI, "png", outputfile);
 		} catch (IOException e) {
-		    // handle exception
+			// handle exception
 		}
 		playerRed.setVisible(true);
-		 playerBlue.setVisible(true);
+		playerBlue.setVisible(true);
 		return newBI;
 	}
 
@@ -269,7 +266,7 @@ public class MainFrame extends JFrame {
 					panelCenter.add(backgroundImage);
 					backgroundImage.setBackgroundImage(1);
 				} else if (panelArray[i][j].getBackground() == Color.blue) {
-					backgroundImage = new BackgroundImage(mContext, i, j);  
+					backgroundImage = new BackgroundImage(mContext, i, j);
 					panelCenter.add(backgroundImage);
 					backgroundImage.setBackgroundImage(2);
 				} else if (panelArray[i][j].getBackground() == Color.white) {

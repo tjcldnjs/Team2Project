@@ -44,6 +44,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 	private boolean rightWallCrash;
 	private boolean upWallCrash;
 	private boolean downWallCrash;
+	
 
 	private final int SPEED = 1;
 
@@ -363,8 +364,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 		down = false;
 
 
-		x = 900;
-		y = 900;
+		
 		x = 10;
 		y = 10;
 
