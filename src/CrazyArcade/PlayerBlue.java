@@ -362,8 +362,8 @@ public class PlayerBlue extends JLabel implements Moveable {
 		up = false;
 		down = false;
 
-		x = 800;
-		y = 800;
+		x = 900;
+		y = 900;
 
 		leftWallCrash = false;
 		rightWallCrash = false;

@@ -214,8 +214,8 @@ public class PlayerRed extends JLabel implements Moveable {
 		bazziDown4 = new ImageIcon("img/bazzi_Down4.png");
 		bazziDown5 = new ImageIcon("img/bazzi_Down5.png");
 
-		x = 0;
-		y = 0;
+		x = 30;
+		y = 30;
 
 		left = false;
 		right = false;
