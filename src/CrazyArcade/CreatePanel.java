@@ -12,31 +12,14 @@ public class CreatePanel extends JPanel implements Runnable{
 	int positionX;
 	int positionY;
 	int count;
-	UnBreakBox unBreakBox;
-	public UnBreakBox getUnBreakBox() {
-		return unBreakBox;
-	}
-
-
-	public void setUnBreakBox(UnBreakBox unBreakBox) {
-		this.unBreakBox = unBreakBox;
-	}
-
-
-	public BreakBox getBreakBox() {
-		return breakBox;
-	}
-
-
-	public void setBreakBox(BreakBox breakBox) {
-		this.breakBox = breakBox;
-	}
-	BreakBox breakBox;
+	
 	
 	public CreatePanel() {
 		count = 1;
 		setInitLayout();
+		
 		new Thread(this).start();
+		
 	}
 	
 
