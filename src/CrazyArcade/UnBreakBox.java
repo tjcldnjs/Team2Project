@@ -9,7 +9,7 @@ public class UnBreakBox extends JLabel{
 	private int y;
 	
 	private ImageIcon box1;
-	
+	 
 	private MainFrame mContext;
 	
 	public UnBreakBox(MainFrame mContext,int i,int j) {

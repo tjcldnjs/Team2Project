@@ -8,7 +8,7 @@ import javax.swing.JPanel;
 
 public class CreatePanel extends JPanel implements Runnable{
 
-	
+	 
 	int positionX;
 	int positionY;
 	int count;

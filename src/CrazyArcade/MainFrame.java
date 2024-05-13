@@ -27,6 +27,7 @@ public class MainFrame extends JFrame{
 	BufferedImage newBI;
 	
 	private PlayerRed playerRed;
+	private PlayerBlue playerBlue;
 	
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY =100;
@@ -51,6 +52,8 @@ public class MainFrame extends JFrame{
 		//isButtonPressed = true;
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new BackgroundPlayerRedService(playerRed)).start();
+		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
+		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
 	}
 
 	private void initData() {
@@ -62,6 +65,7 @@ public class MainFrame extends JFrame{
 		startButton = new JButton();
 		
 		playerRed = new PlayerRed(mContext);
+		playerBlue = new PlayerBlue(mContext);
 		
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
