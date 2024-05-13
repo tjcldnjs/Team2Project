@@ -362,8 +362,11 @@ public class PlayerBlue extends JLabel implements Moveable {
 		up = false;
 		down = false;
 
+
 		x = 900;
 		y = 900;
+		x = 10;
+		y = 10;
 
 		leftWallCrash = false;
 		rightWallCrash = false;
@@ -392,7 +395,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (left) {
-					System.out.println(walkCount);
 					if (walkCount == 0) {
 						setIcon(DaoL5);
 						walkCount = 1;
@@ -445,7 +447,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (right) {
-					System.out.println(walkCount);
 					if (walkCount == 0) {
 						setIcon(DaoR5);
 						walkCount = 1;
@@ -474,7 +475,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (right) {
-					if (x == 897) {
+					if (x == 896) {
 						return;
 					}
 					x = x + SPEED;
@@ -498,7 +499,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (up) {
-					System.out.println(walkCount);
 					if (walkCount == 0) {
 						setIcon(DaoUp5);
 						walkCount = 1;
@@ -551,7 +551,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (down) {
-					System.out.println(walkCount);
 					if (walkCount == 0) {
 						setIcon(DaoDown5);
 						walkCount = 1;

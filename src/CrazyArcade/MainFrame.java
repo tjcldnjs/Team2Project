@@ -224,7 +224,6 @@ public class MainFrame extends JFrame {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				System.out.println("sadfasd");
 				if (e.getSource().equals(startButton)) {
 					for (int i = 0; i < PANELARRAY_SIZE; i++) {
 						for (int j = 0; j < PANELARRAY_SIZE; j++) {
