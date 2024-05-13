@@ -7,8 +7,11 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -35,7 +38,7 @@ public class MainFrame extends JFrame {
 
 	private boolean isButtonPressed;
 
-	public CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
+	private CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
 	public MainFrame() {
 
@@ -67,9 +70,12 @@ public class MainFrame extends JFrame {
 		panelSouth = new JPanel();
 		startButton = new JButton();
 
-		// -----------------------------------
+		// ------------------3-----------------
 		playerRed = new PlayerRed(mContext);
 		 playerBlue = new PlayerBlue(mContext);
+		 
+		 playerRed.setVisible(false);
+		 playerBlue.setVisible(false);
 		// -----------------------------------
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
@@ -132,6 +138,7 @@ public class MainFrame extends JFrame {
 				}
 			}
 			// 1
+		
 			panelArray[0][2].setBackground(Color.blue);
 			panelArray[0][4].setBackground(Color.blue);
 			panelArray[0][5].setBackground(Color.red);
@@ -212,41 +219,22 @@ public class MainFrame extends JFrame {
 			panelArray[9][4].setBackground(Color.blue);
 			panelArray[9][5].setBackground(Color.blue);
 			panelArray[9][7].setBackground(Color.blue);
-
+			
 			createNewBufferdImage();
 			drawMapElements();
 		}
 
 	}
 
-	private void addEventListner() {
-		startButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getSource().equals(startButton)) {
-					for (int i = 0; i < PANELARRAY_SIZE; i++) {
-						for (int j = 0; j < PANELARRAY_SIZE; j++) {
-							// 100개의 panel 전체 visible set false;
-
-						}
-					}
-					createNewBufferdImage();
-					drawMapElements();
-					// panelCenter
-				}
-
-			}
-
-		});
-	}
+	
 
 	// 100개의 panel.getColor 후 panelcenter에 그린후 -> panelcneter ->bufferedImage로 변환
 	// 시키기;
 	public BufferedImage createNewBufferdImage() {
 
 		Graphics centerG = panelCenter.getGraphics();
-
+		panelArray[0][0].setBackground(Color.red);
+		System.out.println(panelArray[0][0].getBackground());
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				centerG.setColor(panelArray[i][j].getBackground());
@@ -260,7 +248,15 @@ public class MainFrame extends JFrame {
 		Graphics2D g = newBI.createGraphics();
 		panelCenter.paint(g);
 		g.dispose();
-
+		try {
+		      // retrieve image
+		    File outputfile = new File("saved.png");
+		    ImageIO.write(newBI, "png", outputfile);
+		} catch (IOException e) {
+		    // handle exception
+		}
+		playerRed.setVisible(true);
+		 playerBlue.setVisible(true);
 		return newBI;
 	}
 
@@ -273,7 +269,7 @@ public class MainFrame extends JFrame {
 					panelCenter.add(backgroundImage);
 					backgroundImage.setBackgroundImage(1);
 				} else if (panelArray[i][j].getBackground() == Color.blue) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
+					backgroundImage = new BackgroundImage(mContext, i, j);  
 					panelCenter.add(backgroundImage);
 					backgroundImage.setBackgroundImage(2);
 				} else if (panelArray[i][j].getBackground() == Color.white) {

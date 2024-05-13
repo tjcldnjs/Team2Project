@@ -435,7 +435,7 @@ public class PlayerRed extends JLabel implements Moveable {
         }).start();
 		new Thread(new Runnable() {
 			@Override
-			public void run() {
+			public void run() { 
 				while (down) {
 					if (y == 898) {
 						return;
