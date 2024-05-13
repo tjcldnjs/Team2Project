@@ -45,7 +45,7 @@ public class MainFrame extends JFrame {
 		initData();
 		panelCenter.setFocusable(true);
 		panelCenter.requestFocusInWindow();
-		setInitLayout();
+		setInitLayout();  
 		// addEventListner();
 		// drawMapElements();
 		testEventListener();
