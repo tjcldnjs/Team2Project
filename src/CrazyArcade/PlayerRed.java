@@ -6,12 +6,11 @@ import javax.swing.JLabel;
 public class PlayerRed extends JLabel implements Moveable {
 
 	MainFrame mContext;
-//	Bubble bubble;
 
 	private int x;
 	private int y;
 	private int walkCount;
-	private ImageIcon playerR, playerL, playerU, playerD;
+
 	private ImageIcon bazziUp1;
 	private ImageIcon bazziUp2;
 	private ImageIcon bazziUp3;
@@ -44,10 +43,9 @@ public class PlayerRed extends JLabel implements Moveable {
 	private boolean upWallCrash;
 	private boolean downWallCrash;
 
-	private final int SPEED = 1;
+	private final int SPEED = 2;
 
 	PlayerWay playerWay;
-
 
 	public PlayerRed(MainFrame mContext) {
 		this.mContext = mContext;
@@ -55,60 +53,12 @@ public class PlayerRed extends JLabel implements Moveable {
 		setInitLayout();
 	}
 
-	public MainFrame getmContext() {
-		return mContext;
-	}
-
-	public void setmContext(MainFrame mContext) {
-		this.mContext = mContext;
-	}
-
 	public int getX() {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
 	public int getY() {
 		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public ImageIcon getPlayerR() {
-		return playerR;
-	}
-
-	public void setPlayerR(ImageIcon playerR) {
-		this.playerR = playerR;
-	}
-
-	public ImageIcon getPlayerL() {
-		return playerL;
-	}
-
-	public void setPlayerL(ImageIcon playerL) {
-		this.playerL = playerL;
-	}
-
-	public ImageIcon getPlayerU() {
-		return playerU;
-	}
-
-	public void setPlayerU(ImageIcon playerU) {
-		this.playerU = playerU;
-	}
-
-	public ImageIcon getPlayerD() {
-		return playerD;
-	}
-
-	public void setPlayerD(ImageIcon playerD) {
-		this.playerD = playerD;
 	}
 
 	public boolean isLeft() {
@@ -175,23 +125,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		this.downWallCrash = downWallCrash;
 	}
 
-	public PlayerWay getPlayerWay() {
-		return playerWay;
-	}
-
-	public void setPlayerWay(PlayerWay playerWay) {
-		this.playerWay = playerWay;
-	}
-
-	public int getSPEED() {
-		return SPEED;
-	}
-
 	private void initData() {
-		playerR = new ImageIcon("img/bazziR.png");
-		playerL = new ImageIcon("img/bazziL.png");
-		playerU = new ImageIcon("img/bazziU.png");
-		playerD = new ImageIcon("img/bazziD.png");
 		bazziL1 = new ImageIcon("img/bazzi_Left1.png");
 		bazziL2 = new ImageIcon("img/bazzi_Left2.png");
 		bazziL3 = new ImageIcon("img/bazzi_Left3.png");
@@ -215,7 +149,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		bazziDown5 = new ImageIcon("img/bazzi_Down5.png");
 
 		x = 890;
-		y = 890;
+		y = 790;
 
 		left = false;
 		right = false;
@@ -228,14 +162,13 @@ public class PlayerRed extends JLabel implements Moveable {
 		downWallCrash = false;
 
 		playerWay = playerWay.DOWN;
-
 	}
 
 	private void setInitLayout() {
-		setIcon(playerD);
+		setIcon(bazziDown1);
 		setSize(100, 100);
 		setLocation(x, y);
-		
+
 		mContext.panelCenter.add(this);
 		mContext.repaint();
 	}
@@ -244,34 +177,34 @@ public class PlayerRed extends JLabel implements Moveable {
 	public void left() {
 		playerWay = playerWay.LEFT;
 		left = true;
-		  walkCount = 0;
-	        new Thread(new Runnable() {
+		walkCount = 0;
+		new Thread(new Runnable() {
 
-	            @Override
-	            public void run() {
-	                while (left) {
-	                    System.out.println(walkCount);
-	                    if (walkCount == 0) {
-	                        setIcon(bazziL4);
-	                        walkCount = 1;
-	                    } else if (walkCount == 1) {
-	                        setIcon(bazziL3);
-	                        walkCount = 2;
-	                    } else if (walkCount == 2) {
-	                        setIcon(bazziL2);
-	                        walkCount = 3;
-	                    } else if (walkCount == 3) {
-	                        setIcon(bazziL1);
-	                        walkCount = 0;
-	                    }
-	                    try {
-	                        Thread.sleep(150);
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	            }
-	        }).start();
+			@Override
+			public void run() {
+				while (left) {
+					System.out.println(walkCount);
+					if (walkCount == 0) {
+						setIcon(bazziL4);
+						walkCount = 1;
+					} else if (walkCount == 1) {
+						setIcon(bazziL3);
+						walkCount = 2;
+					} else if (walkCount == 2) {
+						setIcon(bazziL2);
+						walkCount = 3;
+					} else if (walkCount == 3) {
+						setIcon(bazziL1);
+						walkCount = 0;
+					}
+					try {
+						Thread.sleep(150);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -296,33 +229,33 @@ public class PlayerRed extends JLabel implements Moveable {
 		playerWay = playerWay.RIGHT;
 		right = true;
 		walkCount = 0;
-        new Thread(new Runnable() {
+		new Thread(new Runnable() {
 
-            @Override
-            public void run() {
-                while (right) {
-                    System.out.println(walkCount);
-                    if (walkCount == 0) {
-                        setIcon(bazziR1);
-                        walkCount = 1;
-                    } else if (walkCount == 1) {
-                        setIcon(bazziR2);
-                        walkCount = 2;
-                    } else if (walkCount == 2) {
-                        setIcon(bazziR3);
-                        walkCount = 3;
-                    } else if (walkCount == 3) {
-                        setIcon(bazziR4);
-                        walkCount = 0;
-                    }
-                    try {
-                        Thread.sleep(150);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+			@Override
+			public void run() {
+				while (right) {
+					System.out.println(walkCount);
+					if (walkCount == 0) {
+						setIcon(bazziR1);
+						walkCount = 1;
+					} else if (walkCount == 1) {
+						setIcon(bazziR2);
+						walkCount = 2;
+					} else if (walkCount == 2) {
+						setIcon(bazziR3);
+						walkCount = 3;
+					} else if (walkCount == 3) {
+						setIcon(bazziR4);
+						walkCount = 0;
+					}
+					try {
+						Thread.sleep(150);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -340,41 +273,42 @@ public class PlayerRed extends JLabel implements Moveable {
 				}
 			}
 		}).start();
-	} // end of right
+	}
 
 	@Override
 	public void up() {
 		playerWay = playerWay.UP;
 		up = true;
-		 walkCount = 0;
-	        new Thread(new Runnable() {
-	            @Override
-	            public void run() {
-	                while (up) {
-	                    if (walkCount == 0) {
-	                        setIcon(bazziUp1);
-	                        walkCount = 1;
-	                    } else if (walkCount == 1) {
-	                        setIcon(bazziUp2);
-	                        walkCount = 2;
-	                    } else if (walkCount == 2) {
-	                        setIcon(bazziUp3);
-	                        walkCount = 3;
-	                    } else if (walkCount == 3) {
-	                        setIcon(bazziUp4);
-	                        walkCount = 4;
-	                    } else if (walkCount == 4) {
-	                        setIcon(bazziUp5);
-	                        walkCount = 0;
-	                    }
-	                    try {
-	                        Thread.sleep(150);
-	                    } catch (InterruptedException e) {
-	                        e.printStackTrace();
-	                    }
-	                }
-	            }
-	        }).start();
+		walkCount = 0;
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				while (up) {
+					if (walkCount == 0) {
+						setIcon(bazziUp1);
+						walkCount = 1;
+					} else if (walkCount == 1) {
+						setIcon(bazziUp2);
+						walkCount = 2;
+					} else if (walkCount == 2) {
+						setIcon(bazziUp3);
+						walkCount = 3;
+					} else if (walkCount == 3) {
+						setIcon(bazziUp4);
+						walkCount = 4;
+					} else if (walkCount == 4) {
+						setIcon(bazziUp5);
+						walkCount = 0;
+					}
+					try {
+						Thread.sleep(150);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -392,43 +326,42 @@ public class PlayerRed extends JLabel implements Moveable {
 				}
 			}
 		}).start();
-	} // end of right
+	}
 
 	@Override
 	public void down() {
 		playerWay = playerWay.DOWN;
 		down = true;
 		walkCount = 0;
+		new Thread(new Runnable() {
 
-        new Thread(new Runnable() {
-
-            @Override
-            public void run() {
-                while (down) {
-                    if (walkCount == 0) {
-                        setIcon(bazziDown1);
-                        walkCount = 1;
-                    } else if (walkCount == 1) {
-                        setIcon(bazziDown2);
-                        walkCount = 2;
-                    } else if (walkCount == 2) {
-                        setIcon(bazziDown3);
-                        walkCount = 3;
-                    } else if (walkCount == 3) {
-                        setIcon(bazziDown4);
-                        walkCount = 4;
-                    } else if (walkCount == 4) {
-                        setIcon(bazziDown5);
-                        walkCount = 0;
-                    }
-                    try {
-                        Thread.sleep(150);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-        }).start();
+			@Override
+			public void run() {
+				while (down) {
+					if (walkCount == 0) {
+						setIcon(bazziDown1);
+						walkCount = 1;
+					} else if (walkCount == 1) {
+						setIcon(bazziDown2);
+						walkCount = 2;
+					} else if (walkCount == 2) {
+						setIcon(bazziDown3);
+						walkCount = 3;
+					} else if (walkCount == 3) {
+						setIcon(bazziDown4);
+						walkCount = 4;
+					} else if (walkCount == 4) {
+						setIcon(bazziDown5);
+						walkCount = 0;
+					}
+					try {
+						Thread.sleep(150);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}).start();
 		new Thread(new Runnable() {
 			@Override
 			public void run() {

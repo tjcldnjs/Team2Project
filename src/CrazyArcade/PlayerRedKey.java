@@ -7,11 +7,6 @@ public class PlayerRedKey implements Runnable {
 
 	MainFrame mContext;
 	PlayerRed player;
-	
-	boolean left = true;
-	boolean right = true;
-	boolean up = true;
-	boolean down = true;
 
 	public PlayerRedKey(MainFrame mContext, PlayerRed player) {
 		this.mContext = mContext;
@@ -24,7 +19,7 @@ public class PlayerRedKey implements Runnable {
 
 			@Override
 			public void keyPressed(KeyEvent e) {
-				
+
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
@@ -39,18 +34,15 @@ public class PlayerRedKey implements Runnable {
 
 				case KeyEvent.VK_RIGHT:
 					if (!player.isRight() && !player.isRightWallCrash()) {
-						
 						player.setUp(false);
 						player.setDown(false);
 						player.setLeft(false);
 						player.right();
 					}
 					break;
-//					}
-					
-						
+
 				case KeyEvent.VK_UP:
-					
+
 					if (!player.isUp() && !player.isUpWallCrash()) {
 						player.setRight(false);
 						player.setDown(false);
@@ -58,10 +50,9 @@ public class PlayerRedKey implements Runnable {
 						player.up();
 					}
 					break;
-					
 
 				case KeyEvent.VK_DOWN:
-					
+
 					if (!player.isDown() && !player.isDownWallCrash()) {
 						player.setUp(false);
 						player.setRight(false);
@@ -69,26 +60,30 @@ public class PlayerRedKey implements Runnable {
 						player.down();
 					}
 					break;
-				case KeyEvent.VK_SPACE:				
+
+				case KeyEvent.VK_SPACE:
 					player.attack();
 					break;
+
 				default:
 					break;
 				}
 
-			} // end of KeyPressed
+			}
 
-			
 			@Override
 			public void keyReleased(KeyEvent e) {
+
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
 					player.setLeft(false);
 					break;
+
 				case KeyEvent.VK_RIGHT:
 					player.setRight(false);
 					break;
+
 				case KeyEvent.VK_UP:
 					player.setUp(false);
 					break;
@@ -96,10 +91,10 @@ public class PlayerRedKey implements Runnable {
 				case KeyEvent.VK_DOWN:
 					player.setDown(false);
 					break;
+
 				default:
 					break;
 				}
-
 			}
 		});
 

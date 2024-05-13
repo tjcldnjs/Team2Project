@@ -27,8 +27,8 @@ public class MainFrame extends JFrame {
 	BufferedImage newBI;
 	BackgroundImage backgroundImage;
 	// -----------------------------------
-//	private PlayerRed playerRed;
-//	private PlayerBlue playerBlue;
+	private PlayerRed playerRed;
+	private PlayerBlue playerBlue;
 	// -----------------------------------
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
@@ -52,10 +52,10 @@ public class MainFrame extends JFrame {
 
 		// isButtonPressed = true;
 		// -----------------------------------
-//		new Thread(new PlayerRedKey(mContext, playerRed)).start();
-//		new Thread(new BackgroundPlayerRedService(playerRed)).start();
-//		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
-//		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
+		new Thread(new PlayerRedKey(mContext, playerRed)).start();
+		new Thread(new BackgroundPlayerRedService(playerRed)).start();
+		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
+		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
 		// -----------------------------------
 	}
 
@@ -68,8 +68,8 @@ public class MainFrame extends JFrame {
 		startButton = new JButton();
 
 		// -----------------------------------
-		// playerRed = new PlayerRed(mContext);
-		// playerBlue = new PlayerBlue(mContext);
+		 playerRed = new PlayerRed(mContext);
+		 playerBlue = new PlayerBlue(mContext);
 		// -----------------------------------
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
@@ -83,7 +83,7 @@ public class MainFrame extends JFrame {
 		// panelCenter.setBackground(Color.BLUE); 추후 수정 필요 이미지 아이콘으
 		add(panelSouth, BorderLayout.SOUTH);
 		panelSouth.add(startButton, BorderLayout.EAST);
-		// panelSouth.setLayout(new FlowLayout(FlowLayout.RIGHT));
+//		 panelSouth.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		addPanel();
 		setVisible(true);
 
@@ -265,6 +265,12 @@ public class MainFrame extends JFrame {
 	}
 
 	public void drawMapElements() {
+		try {
+			Thread.sleep(3000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				panelArray[i][j].setVisible(false);

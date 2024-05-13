@@ -6,11 +6,11 @@ import javax.swing.JLabel;
 public class PlayerBlue extends JLabel implements Moveable {
 
 	MainFrame mContext;
-//	Bubble bubble;
 
-	private int walkCount;
 	private int x;
 	private int y;
+	private int walkCount;
+
 	private ImageIcon DaoUp1;
 	private ImageIcon DaoUp2;
 	private ImageIcon DaoUp3;
@@ -56,204 +56,12 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 	}
 
-	public MainFrame getmContext2() {
-		return mContext;
-	}
-
-	public void setmContext2(MainFrame mContext2) {
-		this.mContext = mContext2;
-	}
-
-//	public Bubble getBubble() {
-//		return bubble;
-//	}
-//
-//	public void setBubble(Bubble bubble) {
-//		this.bubble = bubble;
-//	}
-
-	public int getWalkCount() {
-		return walkCount;
-	}
-
-	public void setWalkCount(int walkCount) {
-		this.walkCount = walkCount;
-	}
-
 	public int getX() {
 		return x;
 	}
 
-	public void setX(int x) {
-		this.x = x;
-	}
-
 	public int getY() {
 		return y;
-	}
-
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public ImageIcon getDaoUp1() {
-		return DaoUp1;
-	}
-
-	public void setDaoUp1(ImageIcon daoUp1) {
-		DaoUp1 = daoUp1;
-	}
-
-	public ImageIcon getDaoUp2() {
-		return DaoUp2;
-	}
-
-	public void setDaoUp2(ImageIcon daoUp2) {
-		DaoUp2 = daoUp2;
-	}
-
-	public ImageIcon getDaoUp3() {
-		return DaoUp3;
-	}
-
-	public void setDaoUp3(ImageIcon daoUp3) {
-		DaoUp3 = daoUp3;
-	}
-
-	public ImageIcon getDaoUp4() {
-		return DaoUp4;
-	}
-
-	public void setDaoUp4(ImageIcon daoUp4) {
-		DaoUp4 = daoUp4;
-	}
-
-	public ImageIcon getDaoUp5() {
-		return DaoUp5;
-	}
-
-	public void setDaoUp5(ImageIcon daoUp5) {
-		DaoUp5 = daoUp5;
-	}
-
-	public ImageIcon getDaoDown1() {
-		return DaoDown1;
-	}
-
-	public void setDaoDown1(ImageIcon daoDown1) {
-		DaoDown1 = daoDown1;
-	}
-
-	public ImageIcon getDaoDown2() {
-		return DaoDown2;
-	}
-
-	public void setDaoDown2(ImageIcon daoDown2) {
-		DaoDown2 = daoDown2;
-	}
-
-	public ImageIcon getDaoDown3() {
-		return DaoDown3;
-	}
-
-	public void setDaoDown3(ImageIcon daoDown3) {
-		DaoDown3 = daoDown3;
-	}
-
-	public ImageIcon getDaoDown4() {
-		return DaoDown4;
-	}
-
-	public void setDaoDown4(ImageIcon daoDown4) {
-		DaoDown4 = daoDown4;
-	}
-
-	public ImageIcon getDaoDown5() {
-		return DaoDown5;
-	}
-
-	public void setDaoDown5(ImageIcon daoDown5) {
-		DaoDown5 = daoDown5;
-	}
-
-	public ImageIcon getDaoR1() {
-		return DaoR1;
-	}
-
-	public void setDaoR1(ImageIcon daoR1) {
-		DaoR1 = daoR1;
-	}
-
-	public ImageIcon getDaoR2() {
-		return DaoR2;
-	}
-
-	public void setDaoR2(ImageIcon daoR2) {
-		DaoR2 = daoR2;
-	}
-
-	public ImageIcon getDaoR3() {
-		return DaoR3;
-	}
-
-	public void setDaoR3(ImageIcon daoR3) {
-		DaoR3 = daoR3;
-	}
-
-	public ImageIcon getDaoR4() {
-		return DaoR4;
-	}
-
-	public void setDaoR4(ImageIcon daoR4) {
-		DaoR4 = daoR4;
-	}
-
-	public ImageIcon getDaoR5() {
-		return DaoR5;
-	}
-
-	public void setDaoR5(ImageIcon daoR5) {
-		DaoR5 = daoR5;
-	}
-
-	public ImageIcon getDaoL1() {
-		return DaoL1;
-	}
-
-	public void setDaoL1(ImageIcon daoL1) {
-		DaoL1 = daoL1;
-	}
-
-	public ImageIcon getDaoL2() {
-		return DaoL2;
-	}
-
-	public void setDaoL2(ImageIcon daoL2) {
-		DaoL2 = daoL2;
-	}
-
-	public ImageIcon getDaoL3() {
-		return DaoL3;
-	}
-
-	public void setDaoL3(ImageIcon daoL3) {
-		DaoL3 = daoL3;
-	}
-
-	public ImageIcon getDaoL4() {
-		return DaoL4;
-	}
-
-	public void setDaoL4(ImageIcon daoL4) {
-		DaoL4 = daoL4;
-	}
-
-	public ImageIcon getDaoL5() {
-		return DaoL5;
-	}
-
-	public void setDaoL5(ImageIcon daoL5) {
-		DaoL5 = daoL5;
 	}
 
 	public boolean isLeft() {
@@ -320,18 +128,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 		this.downWallCrash = downWallCrash;
 	}
 
-	public PlayerWay getPlayerWay() {
-		return playerWay;
-	}
-
-	public void setPlayerWay(PlayerWay playerWay) {
-		this.playerWay = playerWay;
-	}
-
-	public int getSPEED() {
-		return SPEED;
-	}
-
 	private void initData() {
 		DaoUp1 = new ImageIcon("img/Dao_Up1.png");
 		DaoUp2 = new ImageIcon("img/Dao_Up2.png");
@@ -363,7 +159,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 		down = false;
 
 		x = 10;
-		y = 10;
+		y = 100;
 
 		leftWallCrash = false;
 		rightWallCrash = false;
@@ -380,9 +176,9 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 		mContext.panelCenter.add(this);
 		mContext.repaint();
-
 	}
 
+	@Override
 	public void left() {
 		playerWay = playerWay.LEFT;
 		left = true;
@@ -435,6 +231,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 		}).start();
 	}
 
+	@Override
 	public void right() {
 		playerWay = playerWay.RIGHT;
 		right = true;
@@ -598,4 +395,4 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 	}
 
-}// end of class
+}
