@@ -214,8 +214,8 @@ public class PlayerRed extends JLabel implements Moveable {
 		bazziDown4 = new ImageIcon("img/bazzi_Down4.png");
 		bazziDown5 = new ImageIcon("img/bazzi_Down5.png");
 
-		x = 0;
-		y = 0;
+		x = 890;
+		y = 890;
 
 		left = false;
 		right = false;
@@ -327,7 +327,7 @@ public class PlayerRed extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (right) {
-					if (x == 897) {
+					if (x == 896) {
 						return;
 					}
 					x = x + SPEED;
@@ -433,7 +433,6 @@ public class PlayerRed extends JLabel implements Moveable {
 			@Override
 			public void run() {
 				while (down) {
-					System.out.println(y);
 					if (y == 898) {
 						return;
 					}
