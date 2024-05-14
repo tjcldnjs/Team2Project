@@ -25,7 +25,6 @@ public class MainFrame extends JFrame {
 	private JPanel panelSouth;
 
 	BufferedImage newBI;
-	BackgroundImage backgroundImage;
 	// -----------------------------------
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
@@ -36,6 +35,7 @@ public class MainFrame extends JFrame {
 
 	private boolean isButtonPressed;
 
+	BackgroundImage[][] backgroundImage = new BackgroundImage[PANELARRAY_SIZE][PANELARRAY_SIZE];
 	private CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
 	public MainFrame() {
@@ -71,13 +71,10 @@ public class MainFrame extends JFrame {
 		startButton = new JButton();
 
 		// -----------------------------------
-<<<<<<< HEAD
 		 playerRed = new PlayerRed(mContext);
 		 playerBlue = new PlayerBlue(mContext);
-=======
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
->>>>>>> 5a9ab3fee0df0b9348029e57fea71e1d5ea0fe80
 		// ------------------3-----------------
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
@@ -285,17 +282,17 @@ public class MainFrame extends JFrame {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				panelArray[i][j].setVisible(false);
 				if (panelArray[i][j].getBackground() == Color.red) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(1);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(1);
 				} else if (panelArray[i][j].getBackground() == Color.blue) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(2);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(2);
 				} else if (panelArray[i][j].getBackground() == Color.white) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(0);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(0);
 					;
 				}
 

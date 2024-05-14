@@ -335,14 +335,11 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-<<<<<<< HEAD
 		new Thread(() -> {
 //			new Bubble(mContext, this);
 		}).start();
-=======
 				
 		new Thread(new Bubble(mContext, this)).start();
->>>>>>> 5a9ab3fee0df0b9348029e57fea71e1d5ea0fe80
 
 	}
 
