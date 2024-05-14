@@ -55,7 +55,15 @@ public class Bubble extends JLabel implements Runnable{
 	@Override
 	public void run() {
 
-
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
+						&& playerPosY <= (j + 1) * 100) {
+					playerPosX = i*100;
+					playerPosY = j*100;
+				}
+			}
+		}
 
 		mContext.panelCenter.add(this, 0);
 		imageChangeArray = new ImageIcon[4];
@@ -66,15 +74,9 @@ public class Bubble extends JLabel implements Runnable{
 
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
-		System.out.println(playerPosX);
-		System.out.println(playerPosY);
-		for (int i = 0; i < 10; i++) {
-			for(int j = 0; j < 10; j++) {
-				if (i*100 < playerPosX && playerPosX <= (i+1)*100 && j*100 <= playerPosY && playerPosY <= (j+1)*100 ) {
-					setLocation((i*100), (j*100) );
-				}
-			}
-		}
+		setLocation(playerPosX, playerPosY);
+	
+		
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 

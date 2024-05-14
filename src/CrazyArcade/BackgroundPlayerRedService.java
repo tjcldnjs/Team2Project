@@ -23,47 +23,41 @@ public class BackgroundPlayerRedService implements Runnable {
 	@Override
 	public void run() {
 		while (true) {
-			PlayerWay playerWay = null;
 
-			int rightColor = image.getRGB(playerRed.getX() + 80, playerRed.getY() + 70);
-			int right2Color = image.getRGB(playerRed.getX() + 80, playerRed.getY() + 90);
-			int leftColor = image.getRGB(playerRed.getX() + 20, playerRed.getY() + 70);
-			int left2Color = image.getRGB(playerRed.getX() + 20, playerRed.getY() + 90);
-			int upColor = image.getRGB(playerRed.getX() + 40, playerRed.getY() + 60);
-			int up2Color = image.getRGB(playerRed.getX() + 60, playerRed.getY() + 60);
-			int downColor = image.getRGB(playerRed.getX() + 40, playerRed.getY() + 100);
-			int down2Color = image.getRGB(playerRed.getX() + 60, playerRed.getY() + 100);
+			int rightFirstPositionColor = image.getRGB(playerRed.getX() + 80, playerRed.getY() + 70);
+			int rightSecondPositionColor = image.getRGB(playerRed.getX() + 80, playerRed.getY() + 90);
+			int leftFirstPositionColor = image.getRGB(playerRed.getX() + 20, playerRed.getY() + 70);
+			int leftSecondPositionColor = image.getRGB(playerRed.getX() + 20, playerRed.getY() + 90);
+			int upFirstPositionColor = image.getRGB(playerRed.getX() + 40, playerRed.getY() + 60);
+			int upSecondPositionColor = image.getRGB(playerRed.getX() + 60, playerRed.getY() + 60);
+			int downFirstPositionColor = image.getRGB(playerRed.getX() + 40, playerRed.getY() + 100);
+			int downSecondPositionColor = image.getRGB(playerRed.getX() + 60, playerRed.getY() + 100);
 
-			if (playerRed.playerWay == playerRed.playerWay.LEFT && (leftColor == RED || leftColor == BLUE)) {
+			if ((playerRed.playerWay == playerRed.playerWay.LEFT
+					&& (leftFirstPositionColor == RED || leftFirstPositionColor == BLUE))
+					|| (playerRed.playerWay == playerRed.playerWay.LEFT
+							&& (leftSecondPositionColor == RED || leftSecondPositionColor == BLUE))) {
 				System.out.println("왼쪽막힘");
 				playerRed.setLeftWallCrash(true);
 				playerRed.setLeft(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.LEFT && (left2Color == RED || left2Color == BLUE)) {
-				System.out.println("왼쪽막힘");
-				playerRed.setLeftWallCrash(true);
-				playerRed.setLeft(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.RIGHT && (rightColor == RED || rightColor == BLUE)) {
+			} else if ((playerRed.playerWay == playerRed.playerWay.RIGHT
+					&& (rightFirstPositionColor == RED || rightFirstPositionColor == BLUE))
+					|| (playerRed.playerWay == playerRed.playerWay.RIGHT
+							&& (rightSecondPositionColor == RED || rightSecondPositionColor == BLUE))) {
 				System.out.println("오른쪽막힘");
 				playerRed.setRightWallCrash(true);
 				playerRed.setRight(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.RIGHT
-					&& (right2Color == RED || right2Color == BLUE)) {
-				System.out.println("오른쪽막힘");
-				playerRed.setRightWallCrash(true);
-				playerRed.setRight(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.UP && (upColor == RED || upColor == BLUE)) {
+			} else if ((playerRed.playerWay == playerRed.playerWay.UP
+					&& (upFirstPositionColor == RED || upFirstPositionColor == BLUE))
+					|| (playerRed.playerWay == playerRed.playerWay.UP
+							&& (upSecondPositionColor == RED || upSecondPositionColor == BLUE))) {
 				System.out.println("위쪽막힘");
 				playerRed.setUpWallCrash(true);
 				playerRed.setUp(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.UP && (up2Color == RED || up2Color == BLUE)) {
-				System.out.println("위쪽막힘");
-				playerRed.setUpWallCrash(true);
-				playerRed.setUp(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.DOWN && (downColor == RED || downColor == BLUE)) {
-				System.out.println("아래쪽막힘");
-				playerRed.setDownWallCrash(true);
-				playerRed.setDown(false);
-			} else if (playerRed.playerWay == playerRed.playerWay.DOWN && (down2Color == RED || down2Color == BLUE)) {
+			} else if ((playerRed.playerWay == playerRed.playerWay.DOWN
+					&& (downFirstPositionColor == RED || downFirstPositionColor == BLUE))
+					|| (playerRed.playerWay == playerRed.playerWay.DOWN
+							&& (downSecondPositionColor == RED || downSecondPositionColor == BLUE))) {
 				System.out.println("아래쪽막힘");
 				playerRed.setDownWallCrash(true);
 				playerRed.setDown(false);

@@ -75,11 +75,6 @@ public class MainFrame extends JFrame {
 
 	
 
-		// -----------------------------------
-		playerRed = new PlayerRed(mContext);
-		playerBlue = new PlayerBlue(mContext);
-		// ------------------3-----------------
-
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
 
