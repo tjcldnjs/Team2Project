@@ -64,7 +64,6 @@ public class PlayerRedKey implements Runnable {
 				case KeyEvent.VK_SPACE:
 					player.attack();
 					break;
-
 				default:
 					break;
 				}

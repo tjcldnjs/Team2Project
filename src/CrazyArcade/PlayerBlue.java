@@ -177,7 +177,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 		setSize(100, 100);
 		setLocation(x, y);
 
-		mContext.panelCenter.add(this);
 		mContext.repaint();
 	}
 
@@ -392,9 +391,8 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-		new Thread(() -> {
-			new Bubble(mContext, this);
-		}).start();
+				
+		new Thread(new Bubble(mContext, this)).start();
 
 	}
 
