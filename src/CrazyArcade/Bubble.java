@@ -3,10 +3,13 @@ package CrazyArcade;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Bubble extends JLabel implements Runnable {
-	MainFrame mContext;
-	PlayerBlue playerBlue;
-	PlayerRed playerRed;
+
+public class Bubble extends JLabel implements Runnable{
+    MainFrame mContext;
+    PlayerBlue playerBlue;
+    PlayerRed playerRed;
+
+
 
 	int bubblePosX;
 	int bubblePosY;
@@ -15,6 +18,10 @@ public class Bubble extends JLabel implements Runnable {
 	int jLabelPosX;
 	int jLabelPosY;
 
+    private ImageIcon bubble;
+
+   
+
 	private int imageChaneIndex;
 
 	private ImageIcon bombomb_Action__main;
@@ -22,7 +29,23 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bombomb_Action_2;
 	private ImageIcon bombomb_Action_3;
 
+    public Bubble(MainFrame mContext, PlayerRed playerRed) {
+        this.mContext = mContext;
+        this.playerRed = playerRed;
+        playerPosX = playerRed.getX()+50;
+        playerPosY = playerRed.getY()+80;
+
+    }
+
 	private ImageIcon[] imageChangeArray;
+
+    public Bubble(MainFrame mContext, PlayerBlue playerBlue) {
+        this.mContext = mContext;
+        this.playerBlue = playerBlue;
+        playerPosX = playerBlue.getX()+50;
+        playerPosY = playerBlue.getY()+80;
+
+    }
 
 	private ImageIcon bomb;
 	private ImageIcon bombdown;
@@ -30,20 +53,6 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bombright;
 	private ImageIcon bombup;
 
-	public Bubble(MainFrame mContext, PlayerRed playerRed) {
-		this.mContext = mContext;
-		this.playerRed = playerRed;
-		playerPosX = playerRed.getX() + 50;
-		playerPosY = playerRed.getY() + 80;
-
-	}
-
-	public Bubble(MainFrame mContext, PlayerBlue playerBlue) {
-		this.mContext = mContext;
-		this.playerBlue = playerBlue;
-		playerPosX = playerBlue.getX() + 50;
-		playerPosY = playerBlue.getY() + 80;
-	}
 
 	
 	@Override
@@ -53,10 +62,6 @@ public class Bubble extends JLabel implements Runnable {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					playerPosX = i * 100;
-					playerPosY = j * 100;
-					jLabelPosX = j;
-					jLabelPosY = i;
 				}
 			}
 		}
@@ -71,7 +76,6 @@ public class Bubble extends JLabel implements Runnable {
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
 		setLocation(playerPosX, playerPosY);
-
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -133,5 +137,6 @@ public class Bubble extends JLabel implements Runnable {
 //			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(1);
 		}
 	}
+
 
 }

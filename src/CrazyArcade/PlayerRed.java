@@ -128,6 +128,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		BazziUpImageArray[3] = new ImageIcon("img/bazzi_Up4.png");
 		BazziUpImageArray[4] = new ImageIcon("img/bazzi_Up5.png");
 
+
 		BazziDownImageArray = new ImageIcon[5];
 		BazziDownImageArray[0] = new ImageIcon("img/bazzi_Down1.png");
 		BazziDownImageArray[1] = new ImageIcon("img/bazzi_Down2.png");
@@ -135,8 +136,9 @@ public class PlayerRed extends JLabel implements Moveable {
 		BazziDownImageArray[3] = new ImageIcon("img/bazzi_Down4.png");
 		BazziDownImageArray[4] = new ImageIcon("img/bazzi_Down5.png");
 
-		x = 30;
-		y = 30;
+
+
+
 
 		x = 890;
 		y = 790;
@@ -158,6 +160,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		setIcon(BazziDownImageArray[0]);
 		setSize(100, 100);
 		setLocation(x, y);
+
 
 		mContext.repaint();
 	}
@@ -332,12 +335,10 @@ public class PlayerRed extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-		new Thread(() -> {
-//			new Bubble(mContext, this);
 
-		}).start();
-
+		
 		new Thread(new Bubble(mContext, this)).start();
+
 	}
 
 }
