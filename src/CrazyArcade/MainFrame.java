@@ -25,16 +25,18 @@ public class MainFrame extends JFrame {
 	private JPanel panelSouth;
 
 	BufferedImage newBI;
-	BackgroundImage backgroundImage;
 	// -----------------------------------
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
+	BackgroundPlayerBlueService blueService;
+	BackgroundPlayerRedService redService;
 	// -----------------------------------
 
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
 
 	private boolean isButtonPressed;
+	BackgroundImage[][] backgroundImage = new BackgroundImage[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
 	private CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
@@ -54,10 +56,14 @@ public class MainFrame extends JFrame {
 		// isButtonPressed = true;
 		// -----------------------------------
 
+		blueService = new BackgroundPlayerBlueService(playerBlue);
+		redService = new BackgroundPlayerRedService(playerRed);
+		
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
-		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
-		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
+		
+		new Thread(blueService).start();
+		new Thread(redService).start();
 		// -----------------------------------
 
 	}
@@ -225,7 +231,7 @@ public class MainFrame extends JFrame {
 
 			createNewBufferdImage();
 			drawMapElements();
-		} else if (startNum == 3) {
+		} else {
 			panelArray[0][2].setBackground(Color.blue);
 			panelArray[1][2].setBackground(Color.blue);
 			panelArray[2][2].setBackground(Color.blue);
@@ -236,6 +242,8 @@ public class MainFrame extends JFrame {
 			panelArray[7][7].setBackground(Color.blue);
 			panelArray[8][7].setBackground(Color.blue);
 			panelArray[9][7].setBackground(Color.blue);
+			createNewBufferdImage();
+			drawMapElements();
 		}
 
 	}
@@ -274,23 +282,31 @@ public class MainFrame extends JFrame {
 		return newBI;
 	}
 
+	public void reviseBufferImage(int x, int y) {
+		Graphics2D graphic2D = newBI.createGraphics();
+		graphic2D.setColor(Color.white);
+		graphic2D.fillRect(x * 100, y * 100, PANEL_SIZE_XY, PANEL_SIZE_XY);
+		blueService.setNewImage();
+		redService.setNewImage();
+	}
+
 	public void drawMapElements() {
-		
+
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				panelArray[i][j].setVisible(false);
 				if (panelArray[i][j].getBackground() == Color.red) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(1);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(1);
 				} else if (panelArray[i][j].getBackground() == Color.blue) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(2);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(2);
 				} else if (panelArray[i][j].getBackground() == Color.white) {
-					backgroundImage = new BackgroundImage(mContext, i, j);
-					panelCenter.add(backgroundImage);
-					backgroundImage.setBackgroundImage(0);
+					backgroundImage[i][j] = new BackgroundImage(mContext, i, j);
+					panelCenter.add(backgroundImage[i][j]);
+					backgroundImage[i][j].setBackgroundImage(0);
 					;
 				}
 

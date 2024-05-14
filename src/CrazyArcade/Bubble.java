@@ -12,6 +12,8 @@ public class Bubble extends JLabel implements Runnable {
 	int bubblePosY;
 	int playerPosX;
 	int playerPosY;
+	int jlabelPosX;
+	int jlabelPosY;
 
 	private int imageChaneIndex;
 	private ImageIcon bombomb_Action__main;
@@ -30,21 +32,31 @@ public class Bubble extends JLabel implements Runnable {
 	public Bubble(MainFrame mContext, PlayerRed playerRed) {
 		this.mContext = mContext;
 		this.playerRed = playerRed;
-		playerPosX = playerRed.getX()+50;
-		playerPosY = playerRed.getY()+80;
+		playerPosX = playerRed.getX() + 50;
+		playerPosY = playerRed.getY() + 80;
 
 	}
 
 	public Bubble(MainFrame mContext, PlayerBlue playerBlue) {
 		this.mContext = mContext;
 		this.playerBlue = playerBlue;
-		playerPosX = playerBlue.getX()+50;
-		playerPosY = playerBlue.getY()+80;
+		playerPosX = playerBlue.getX() + 50;
+		playerPosY = playerBlue.getY() + 80;
 	}
 
 	@Override
 	public void run() {
-		
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
+						&& playerPosY <= (j + 1) * 100) {
+					bubblePosX = i * 100;
+					bubblePosY = j * 100;
+					jlabelPosX = j;
+					jlabelPosY = i;
+				}
+			}
+		}
 		mContext.panelCenter.add(this, 0);
 		imageChangeArray = new ImageIcon[4];
 		imageChangeArray[0] = new ImageIcon("img/bomb_Action__main.png");
@@ -54,15 +66,8 @@ public class Bubble extends JLabel implements Runnable {
 
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
-		System.out.println(playerPosX);
-		System.out.println(playerPosY);
-		for (int i = 0; i < 10; i++) {
-			for(int j = 0; j < 10; j++) {
-				if (i*100 < playerPosX && playerPosX <= (i+1)*100 && j*100 <= playerPosY && playerPosY <= (j+1)*100 ) {
-					setLocation((i*100), (j*100) );
-				}
-			}
-		}
+		setLocation(bubblePosX, bubblePosY);
+
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -78,6 +83,54 @@ public class Bubble extends JLabel implements Runnable {
 				e.printStackTrace();
 			}
 		}
+		// mContext.backgroundImage[playerPosY / 100][playerPosX / 100].setIcon(null);
+//		mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].setIcon(null);
+//		mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].setIcon(null);
+//		mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].setIcon(null);
+//		mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].setIcon(null);
+
+		if (jlabelPosY == 9 && jlabelPosX == 0) {
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+		} else if (jlabelPosX == 9 && jlabelPosY == 9) {
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+
+		} else if (jlabelPosX == 9 && jlabelPosY == 0) {
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+
+		} else if (jlabelPosX == 0 && jlabelPosY == 0) {
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+
+		} else if (jlabelPosX == 0) {
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+
+		} else if (jlabelPosY == 0) {
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+
+		} else if (jlabelPosY == 9) {
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+		} else if (jlabelPosX == 9) {
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+
+		} else {
+			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
+			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+
+		}
+
 	}
 
 }
