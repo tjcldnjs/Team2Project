@@ -149,9 +149,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		bazziDown5 = new ImageIcon("img/bazzi_Down5.png");
 
 
-		x = 30;
-		y = 30;
-
+		
 		x = 890;
 		y = 790;
 
@@ -173,7 +171,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		setSize(100, 100);
 		setLocation(x, y);
 
-		mContext.panelCenter.add(this);
+		//mContext.panelCenter.add(this);
 		mContext.repaint();
 	}
 

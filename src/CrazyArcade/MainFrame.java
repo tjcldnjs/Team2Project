@@ -28,17 +28,14 @@ public class MainFrame extends JFrame {
 
 	BufferedImage newBI;
 	BackgroundImage backgroundImage;
-<<<<<<< HEAD
+
 	// -----------------------------------
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
-	// -----------------------------------
-=======
 
-	private PlayerRed playerRed;
-	private PlayerBlue playerBlue;
 
->>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
+
+
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
 
@@ -60,20 +57,12 @@ public class MainFrame extends JFrame {
 		// panelCenter.add(playerRed);
 
 		// isButtonPressed = true;
-<<<<<<< HEAD
-		// -----------------------------------
-=======
 
->>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
 		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
-<<<<<<< HEAD
-		// -----------------------------------
-=======
 
->>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 	}
 
 	private void initData() {
@@ -84,19 +73,17 @@ public class MainFrame extends JFrame {
 		panelSouth = new JPanel();
 		startButton = new JButton();
 
-<<<<<<< HEAD
-		// -----------------------------------
+
 		 playerRed = new PlayerRed(mContext);
 		 playerBlue = new PlayerBlue(mContext);
-=======
-		// ------------------3-----------------
+
+	
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
 
 		playerRed.setVisible(false);
 		playerBlue.setVisible(false);
->>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
-		// -----------------------------------
+
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
 
@@ -273,18 +260,15 @@ public class MainFrame extends JFrame {
 		} catch (IOException e) {
 			// handle exception
 		}
+		panelCenter.add(playerBlue);
+		panelCenter.add(playerRed);
 		playerRed.setVisible(true);
 		playerBlue.setVisible(true);
 		return newBI;
 	}
 
 	public void drawMapElements() {
-		try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				panelArray[i][j].setVisible(false);

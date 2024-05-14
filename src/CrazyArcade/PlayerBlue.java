@@ -177,7 +177,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 		setSize(100, 100);
 		setLocation(x, y);
 
-		mContext.panelCenter.add(this);
+		//mContext.panelCenter.add(this);
 		mContext.repaint();
 	}
 
