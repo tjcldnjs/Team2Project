@@ -59,9 +59,9 @@ public class PlayerBlueKey implements Runnable {
 					}
 					break;
 
-				case KeyEvent.VK_O:
-					playerBlue.attack();
-					break;
+//				case KeyEvent.VK_O:
+//					playerBlue.attack();
+//					break;
 
 				default:
 					break;
@@ -88,7 +88,8 @@ public class PlayerBlueKey implements Runnable {
 				case KeyEvent.VK_S:
 					playerBlue.setDown(false);
 					break;
-
+				case KeyEvent.VK_SHIFT:
+					playerBlue.attack();
 				default:
 					break;
 				}
