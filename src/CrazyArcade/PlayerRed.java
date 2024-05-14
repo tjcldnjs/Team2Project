@@ -149,7 +149,6 @@ public class PlayerRed extends JLabel implements Moveable {
 		bazziDown5 = new ImageIcon("img/bazzi_Down5.png");
 
 
-		
 		x = 890;
 		y = 790;
 
@@ -171,7 +170,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		setSize(100, 100);
 		setLocation(x, y);
 
-		//mContext.panelCenter.add(this);
+
 		mContext.repaint();
 	}
 
@@ -366,7 +365,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		}).start();
 		new Thread(new Runnable() {
 			@Override
-			public void run() { 
+			public void run() {
 				while (down) {
 					if (y == 898) {
 						return;
@@ -384,11 +383,8 @@ public class PlayerRed extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-		new Thread(() -> {
-			new Bubble(mContext, this);
-
-		}).start();
-
+		
+		new Thread(new Bubble(mContext, this)).start();
 	}
 
 }

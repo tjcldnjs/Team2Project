@@ -4,8 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -33,9 +31,6 @@ public class MainFrame extends JFrame {
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
 
-
-
-
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
 
@@ -58,6 +53,7 @@ public class MainFrame extends JFrame {
 
 		// isButtonPressed = true;
 
+
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
@@ -78,6 +74,12 @@ public class MainFrame extends JFrame {
 		 playerBlue = new PlayerBlue(mContext);
 
 	
+
+		// -----------------------------------
+		playerRed = new PlayerRed(mContext);
+		playerBlue = new PlayerBlue(mContext);
+		// ------------------3-----------------
+
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
 
@@ -119,7 +121,7 @@ public class MainFrame extends JFrame {
 		Scanner sc = new Scanner(System.in);
 		int startNum = sc.nextInt();
 		if (startNum == 1) {
-			panelArray[0][2].setBackground(Color.blue);
+//			panelArray[0][2].setBackground(Color.blue);
 			panelArray[1][2].setBackground(Color.blue);
 			panelArray[2][2].setBackground(Color.blue);
 			panelArray[2][1].setBackground(Color.blue);
@@ -128,7 +130,7 @@ public class MainFrame extends JFrame {
 			panelArray[7][8].setBackground(Color.blue);
 			panelArray[7][7].setBackground(Color.blue);
 			panelArray[8][7].setBackground(Color.blue);
-			panelArray[9][7].setBackground(Color.blue);
+//			panelArray[9][7].setBackground(Color.blue);
 
 			panelArray[4][4].setBackground(Color.red);
 			panelArray[4][5].setBackground(Color.red);
@@ -229,6 +231,17 @@ public class MainFrame extends JFrame {
 
 			createNewBufferdImage();
 			drawMapElements();
+		} else if (startNum == 3) {
+			panelArray[0][2].setBackground(Color.blue);
+			panelArray[1][2].setBackground(Color.blue);
+			panelArray[2][2].setBackground(Color.blue);
+			panelArray[2][1].setBackground(Color.blue);
+			panelArray[2][0].setBackground(Color.blue);
+			panelArray[7][9].setBackground(Color.blue);
+			panelArray[7][8].setBackground(Color.blue);
+			panelArray[7][7].setBackground(Color.blue);
+			panelArray[8][7].setBackground(Color.blue);
+			panelArray[9][7].setBackground(Color.blue);
 		}
 
 	}
