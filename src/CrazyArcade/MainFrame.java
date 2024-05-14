@@ -7,8 +7,11 @@ import java.awt.Graphics2D;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.util.Scanner;
 
+import javax.imageio.ImageIO;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -23,19 +26,25 @@ public class MainFrame extends JFrame {
 	JPanel panelCenter;
 	private JPanel panelSouth;
 
-
 	BufferedImage newBI;
 	BackgroundImage backgroundImage;
+<<<<<<< HEAD
 	// -----------------------------------
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
 	// -----------------------------------
+=======
+
+	private PlayerRed playerRed;
+	private PlayerBlue playerBlue;
+
+>>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
 
 	private boolean isButtonPressed;
 
-	public CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
+	private CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
 	public MainFrame() {
 
@@ -51,12 +60,20 @@ public class MainFrame extends JFrame {
 		// panelCenter.add(playerRed);
 
 		// isButtonPressed = true;
+<<<<<<< HEAD
 		// -----------------------------------
+=======
+
+>>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
 		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
+<<<<<<< HEAD
 		// -----------------------------------
+=======
+
+>>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 	}
 
 	private void initData() {
@@ -67,9 +84,18 @@ public class MainFrame extends JFrame {
 		panelSouth = new JPanel();
 		startButton = new JButton();
 
+<<<<<<< HEAD
 		// -----------------------------------
 		 playerRed = new PlayerRed(mContext);
 		 playerBlue = new PlayerBlue(mContext);
+=======
+		// ------------------3-----------------
+		playerRed = new PlayerRed(mContext);
+		playerBlue = new PlayerBlue(mContext);
+
+		playerRed.setVisible(false);
+		playerBlue.setVisible(false);
+>>>>>>> 0bcc46ec3a1c97d910db9c267bebf432c81b3bee
 		// -----------------------------------
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
@@ -132,6 +158,7 @@ public class MainFrame extends JFrame {
 				}
 			}
 			// 1
+
 			panelArray[0][2].setBackground(Color.blue);
 			panelArray[0][4].setBackground(Color.blue);
 			panelArray[0][5].setBackground(Color.red);
@@ -219,34 +246,13 @@ public class MainFrame extends JFrame {
 
 	}
 
-	private void addEventListner() {
-		startButton.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				// TODO Auto-generated method stub
-				if (e.getSource().equals(startButton)) {
-					for (int i = 0; i < PANELARRAY_SIZE; i++) {
-						for (int j = 0; j < PANELARRAY_SIZE; j++) {
-							// 100개의 panel 전체 visible set false;
-
-						}
-					}
-					createNewBufferdImage();
-					drawMapElements();
-					// panelCenter
-				}
-
-			}
-
-		});
-	}
-
 	// 100개의 panel.getColor 후 panelcenter에 그린후 -> panelcneter ->bufferedImage로 변환
 	// 시키기;
 	public BufferedImage createNewBufferdImage() {
 
 		Graphics centerG = panelCenter.getGraphics();
-
+		panelArray[0][0].setBackground(Color.red);
+		System.out.println(panelArray[0][0].getBackground());
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				centerG.setColor(panelArray[i][j].getBackground());
@@ -260,7 +266,15 @@ public class MainFrame extends JFrame {
 		Graphics2D g = newBI.createGraphics();
 		panelCenter.paint(g);
 		g.dispose();
-
+		try {
+			// retrieve image
+			File outputfile = new File("saved.png");
+			ImageIO.write(newBI, "png", outputfile);
+		} catch (IOException e) {
+			// handle exception
+		}
+		playerRed.setVisible(true);
+		playerBlue.setVisible(true);
 		return newBI;
 	}
 
