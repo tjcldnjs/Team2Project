@@ -28,9 +28,10 @@ public class MainFrame extends JFrame {
 	// -----------------------------------
 	private PlayerRed playerRed;
 	private PlayerBlue playerBlue;
+
 	BackgroundPlayerBlueService blueService;
 	BackgroundPlayerRedService redService;
-	// -----------------------------------
+
 
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
@@ -54,17 +55,20 @@ public class MainFrame extends JFrame {
 		// panelCenter.add(playerRed);
 
 		// isButtonPressed = true;
-		// -----------------------------------
+
 
 		blueService = new BackgroundPlayerBlueService(playerBlue);
 		redService = new BackgroundPlayerRedService(playerRed);
 		
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
+
 		
 		new Thread(blueService).start();
 		new Thread(redService).start();
 		// -----------------------------------
+
+		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
 
 	}
 
@@ -76,16 +80,12 @@ public class MainFrame extends JFrame {
 		panelSouth = new JPanel();
 		startButton = new JButton();
 
-		// -----------------------------------
-		playerRed = new PlayerRed(mContext);
-		playerBlue = new PlayerBlue(mContext);
-		// ------------------3-----------------
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
 
 		playerRed.setVisible(false);
 		playerBlue.setVisible(false);
-		// -----------------------------------
+
 		panelCenter.setSize(1000, 1000);
 		panelSouth.setSize(1000, 100);
 

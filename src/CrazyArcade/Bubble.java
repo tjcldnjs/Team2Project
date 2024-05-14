@@ -142,7 +142,43 @@ public class Bubble extends JLabel implements Runnable{
 		
 		
 		mContext.nullBubble(this);
+
+//		} else if (jLabelPosX == 0 && jLabelPosY == 9) {
+//			System.out.println("0/9");
+//			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(4);
+//
+//		} else if (jLabelPosX == 9 && jLabelPosY == 9) {
+//			System.out.println("9/9");
+//			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled(3);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(4);
+//
+//		} else if (jLabelPosX == 0) {
+//			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled(2);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(4);
+//
+//		} else if (jLabelPosX == 9) {
+//			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled(3);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled(1);
+//		} else if (jLabelPosY == 0) {
+//			System.out.println("y0");
+//			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled(3);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled(1);
+//		} else if (jLabelPosY == 9) {
+//			System.out.println("y9");
+//			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled(3);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(1);
+//		} else {
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled(3);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled(1);
+//			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(1);
+		}
 	}
 
 
-}

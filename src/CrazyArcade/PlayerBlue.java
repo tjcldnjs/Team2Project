@@ -11,31 +11,12 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 	private int x;
 	private int y;
-	private int walkCount;
+	private int imageIconIndex;
 
-	private ImageIcon DaoUp1;
-	private ImageIcon DaoUp2;
-	private ImageIcon DaoUp3;
-	private ImageIcon DaoUp4;
-	private ImageIcon DaoUp5;
-
-	private ImageIcon DaoDown1;
-	private ImageIcon DaoDown2;
-	private ImageIcon DaoDown3;
-	private ImageIcon DaoDown4;
-	private ImageIcon DaoDown5;
-
-	private ImageIcon DaoR1;
-	private ImageIcon DaoR2;
-	private ImageIcon DaoR3;
-	private ImageIcon DaoR4;
-	private ImageIcon DaoR5;
-
-	private ImageIcon DaoL1;
-	private ImageIcon DaoL2;
-	private ImageIcon DaoL3;
-	private ImageIcon DaoL4;
-	private ImageIcon DaoL5;
+	private ImageIcon[] DaoUpImageArray;
+	private ImageIcon[] DaoDownImageArray;
+	private ImageIcon[] DaoRightImageArray;
+	private ImageIcon[] DaoLeftImageArray;
 
 	private boolean left;
 	private boolean right;
@@ -131,29 +112,38 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	private void initData() {
-		DaoUp1 = new ImageIcon("img/Dao_Up1.png");
-		DaoUp2 = new ImageIcon("img/Dao_Up2.png");
-		DaoUp3 = new ImageIcon("img/Dao_Up3.png");
-		DaoUp4 = new ImageIcon("img/Dao_Up4.png");
-		DaoUp5 = new ImageIcon("img/Dao_Up5.png");
 
-		DaoDown1 = new ImageIcon("img/Dao_Down1.png");
-		DaoDown2 = new ImageIcon("img/Dao_Down2.png");
-		DaoDown3 = new ImageIcon("img/Dao_Down3.png");
-		DaoDown4 = new ImageIcon("img/Dao_Down4.png");
-		DaoDown5 = new ImageIcon("img/Dao_Down5.png");
+		DaoUpImageArray = new ImageIcon[5];
 
-		DaoL1 = new ImageIcon("img/Dao_Left1.png");
-		DaoL2 = new ImageIcon("img/Dao_Left2.png");
-		DaoL3 = new ImageIcon("img/Dao_Left3.png");
-		DaoL4 = new ImageIcon("img/Dao_Left4.png");
-		DaoL5 = new ImageIcon("img/Dao_Left5.png");
+		DaoUpImageArray[0] = new ImageIcon("img/Dao_Up1.png");
+		DaoUpImageArray[1] = new ImageIcon("img/Dao_Up2.png");
+		DaoUpImageArray[2] = new ImageIcon("img/Dao_Up3.png");
+		DaoUpImageArray[3] = new ImageIcon("img/Dao_Up4.png");
+		DaoUpImageArray[4] = new ImageIcon("img/Dao_Up5.png");
 
-		DaoR1 = new ImageIcon("img/Dao_Right1.png");
-		DaoR2 = new ImageIcon("img/Dao_Right2.png");
-		DaoR3 = new ImageIcon("img/Dao_Right3.png");
-		DaoR4 = new ImageIcon("img/Dao_Right4.png");
-		DaoR5 = new ImageIcon("img/Dao_Right5.png");
+		DaoDownImageArray = new ImageIcon[5];
+
+		DaoDownImageArray[0] = new ImageIcon("img/Dao_Down1.png");
+		DaoDownImageArray[1] = new ImageIcon("img/Dao_Down2.png");
+		DaoDownImageArray[2] = new ImageIcon("img/Dao_Down3.png");
+		DaoDownImageArray[3] = new ImageIcon("img/Dao_Down4.png");
+		DaoDownImageArray[4] = new ImageIcon("img/Dao_Down5.png");
+
+		DaoLeftImageArray = new ImageIcon[5];
+
+		DaoLeftImageArray[0] = new ImageIcon("img/Dao_Left1.png");
+		DaoLeftImageArray[1] = new ImageIcon("img/Dao_Left2.png");
+		DaoLeftImageArray[2] = new ImageIcon("img/Dao_Left3.png");
+		DaoLeftImageArray[3] = new ImageIcon("img/Dao_Left4.png");
+		DaoLeftImageArray[4] = new ImageIcon("img/Dao_Left5.png");
+
+		DaoRightImageArray = new ImageIcon[5];
+
+		DaoRightImageArray[0] = new ImageIcon("img/Dao_Right1.png");
+		DaoRightImageArray[1] = new ImageIcon("img/Dao_Right2.png");
+		DaoRightImageArray[2] = new ImageIcon("img/Dao_Right3.png");
+		DaoRightImageArray[3] = new ImageIcon("img/Dao_Right4.png");
+		DaoRightImageArray[4] = new ImageIcon("img/Dao_Right5.png");
 
 		left = false;
 		right = false;
@@ -172,9 +162,10 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	private void setInitLayout() {
-		setIcon(DaoDown1);
+		setIcon(DaoDownImageArray[0]);
 		setSize(100, 100);
 		setLocation(x, y);
+
 
 		mContext.repaint();
 	}
@@ -183,27 +174,16 @@ public class PlayerBlue extends JLabel implements Moveable {
 	public void left() {
 		playerWay = playerWay.LEFT;
 		left = true;
-		walkCount = 0;
+		imageIconIndex = 0;
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (left) {
-					if (walkCount == 0) {
-						setIcon(DaoL5);
-						walkCount = 1;
-					} else if (walkCount == 1) {
-						setIcon(DaoL4);
-						walkCount = 2;
-					} else if (walkCount == 2) {
-						setIcon(DaoL3);
-						walkCount = 3;
-					} else if (walkCount == 3) {
-						setIcon(DaoL2);
-						walkCount = 4;
-					} else if (walkCount == 4) {
-						setIcon(DaoL1);
-						walkCount = 0;
+					setIcon(DaoLeftImageArray[imageIconIndex]);
+					imageIconIndex++;
+					if (imageIconIndex == 5) {
+						imageIconIndex = 0;
 					}
 					try {
 						Thread.sleep(150);
@@ -236,27 +216,17 @@ public class PlayerBlue extends JLabel implements Moveable {
 	public void right() {
 		playerWay = playerWay.RIGHT;
 		right = true;
-		walkCount = 0;
+		imageIconIndex = 0;
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (right) {
-					if (walkCount == 0) {
-						setIcon(DaoR5);
-						walkCount = 1;
-					} else if (walkCount == 1) {
-						setIcon(DaoR4);
-						walkCount = 2;
-					} else if (walkCount == 2) {
-						setIcon(DaoR3);
-						walkCount = 3;
-					} else if (walkCount == 3) {
-						setIcon(DaoR2);
-						walkCount = 4;
-					} else if (walkCount == 4) {
-						setIcon(DaoR1);
-						walkCount = 0;
+
+					setIcon(DaoRightImageArray[imageIconIndex]);
+					imageIconIndex++;
+					if (imageIconIndex == 5) {
+						imageIconIndex = 0;
 					}
 					try {
 						Thread.sleep(150);
@@ -288,27 +258,15 @@ public class PlayerBlue extends JLabel implements Moveable {
 	public void up() {
 		playerWay = playerWay.UP;
 		up = true;
-		walkCount = 0;
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (up) {
-					if (walkCount == 0) {
-						setIcon(DaoUp5);
-						walkCount = 1;
-					} else if (walkCount == 1) {
-						setIcon(DaoUp4);
-						walkCount = 2;
-					} else if (walkCount == 2) {
-						setIcon(DaoUp3);
-						walkCount = 3;
-					} else if (walkCount == 3) {
-						setIcon(DaoUp2);
-						walkCount = 4;
-					} else if (walkCount == 4) {
-						setIcon(DaoUp1);
-						walkCount = 0;
+					setIcon(DaoUpImageArray[imageIconIndex]);
+					imageIconIndex++;
+					if (imageIconIndex == 5) {
+						imageIconIndex = 0;
 					}
 					try {
 						Thread.sleep(150);
@@ -318,6 +276,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 				}
 			}
 		}).start();
+
 		new Thread(new Runnable() {
 			@Override
 			public void run() {
@@ -340,27 +299,16 @@ public class PlayerBlue extends JLabel implements Moveable {
 	public void down() {
 		playerWay = playerWay.DOWN;
 		down = true;
-		walkCount = 0;
+		imageIconIndex = 0;
 		new Thread(new Runnable() {
 
 			@Override
 			public void run() {
 				while (down) {
-					if (walkCount == 0) {
-						setIcon(DaoDown5);
-						walkCount = 1;
-					} else if (walkCount == 1) {
-						setIcon(DaoDown4);
-						walkCount = 2;
-					} else if (walkCount == 2) {
-						setIcon(DaoDown3);
-						walkCount = 3;
-					} else if (walkCount == 3) {
-						setIcon(DaoDown2);
-						walkCount = 4;
-					} else if (walkCount == 4) {
-						setIcon(DaoDown1);
-						walkCount = 0;
+					setIcon(DaoDownImageArray[imageIconIndex]);
+					imageIconIndex++;
+					if (imageIconIndex == 5) {
+						imageIconIndex = 0;
 					}
 					try {
 						Thread.sleep(150);
@@ -393,6 +341,11 @@ public class PlayerBlue extends JLabel implements Moveable {
 		bubble = new Bubble(mContext, this);
 		new Thread(bubble).start();
 	
+
+
+		new Thread(new Bubble(mContext, this)).start();
+
+
 	}
 	
 	

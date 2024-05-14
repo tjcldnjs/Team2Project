@@ -11,9 +11,15 @@ public class BackgroundImage extends JLabel {
 	private ImageIcon unbreakBox;
 	private ImageIcon breakBox;
 	private ImageIcon floor;
+	private ImageIcon bomb;
+	private ImageIcon bombUp;
+	private ImageIcon bombDown;
+	private ImageIcon bombRight;
+	private ImageIcon bombLeft;
 
 	private MainFrame mContext;
 
+	
 	private int imageStatus;
 
 	public BackgroundImage(MainFrame mContext, int i, int j) {
@@ -23,6 +29,12 @@ public class BackgroundImage extends JLabel {
 		unbreakBox = new ImageIcon("img/box_unbreak.png");
 		breakBox = new ImageIcon("img/box_breakable.png");
 		floor = new ImageIcon("img/main_background1.png");
+		
+		bomb = new ImageIcon("img/bomb.png");
+		bombUp = new ImageIcon("img/bombup.png");
+		bombDown = new ImageIcon("img/bombdown.png");
+		bombRight = new ImageIcon("img/bombright.png");
+		bombLeft = new ImageIcon("img/bombleft.png");
 
 		initData();
 	}
@@ -48,6 +60,7 @@ public class BackgroundImage extends JLabel {
 			imageStatus = 2;
 		}
 	}
+
 
 	public void bubbled(String a, int y, int x) {
 		if(imageStatus == 1 || imageStatus == 0) {
