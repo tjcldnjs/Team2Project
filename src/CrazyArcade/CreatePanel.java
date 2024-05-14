@@ -25,7 +25,6 @@ public class CreatePanel extends JPanel implements Runnable{
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		addMouseListener(new MouseAdapter() {
 
 			@Override

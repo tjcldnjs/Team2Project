@@ -5,8 +5,8 @@ import java.awt.event.KeyEvent;
 
 public class PlayerBlueKey implements Runnable {
 
-	MainFrame mContext;
-	PlayerBlue playerBlue;
+	private MainFrame mContext;
+	private PlayerBlue playerBlue;
 
 	public PlayerBlueKey(MainFrame mContext, PlayerBlue playerBlue) {
 		this.mContext = mContext;
