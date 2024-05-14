@@ -49,11 +49,12 @@ public class BackgroundImage extends JLabel {
 		}
 	}
 
-	public void bubbled(int i) {
+	public void bubbled(String a, int y, int x) {
 		if(imageStatus == 1 || imageStatus == 0) {
 			
 		} else if(imageStatus == 2) {
 			setIcon(floor);
+			mContext.reviseBufferImage(x, y);
 		}
 	}
 }

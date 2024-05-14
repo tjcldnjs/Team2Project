@@ -314,6 +314,12 @@ public class MainFrame extends JFrame {
 		}
 
 	}
+	
+	public void nullBubble(Bubble bubble){
+		Bubble bubble2 = bubble;
+		bubble2.setVisible(false);
+		bubble2 = null;
+	}
 
 	public static void main(String[] args) {
 		new MainFrame();

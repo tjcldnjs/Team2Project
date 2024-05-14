@@ -3,25 +3,49 @@ package CrazyArcade;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-public class Bubble extends JLabel implements Runnable {
-	MainFrame mContext;
-	PlayerBlue playerBlue;
-	PlayerRed playerRed;
+
+public class Bubble extends JLabel implements Runnable{
+    MainFrame mContext;
+    PlayerBlue playerBlue;
+    PlayerRed playerRed;
+
+
 
 	int bubblePosX;
 	int bubblePosY;
 	int playerPosX;
 	int playerPosY;
-	int jlabelPosX;
-	int jlabelPosY;
+	int jLabelPosX;
+	int jLabelPosY;
+
+    private ImageIcon bubble;
+
+   
 
 	private int imageChaneIndex;
+
 	private ImageIcon bombomb_Action__main;
 	private ImageIcon bombomb_Action_1;
 	private ImageIcon bombomb_Action_2;
 	private ImageIcon bombomb_Action_3;
 
+    public Bubble(MainFrame mContext, PlayerRed playerRed) {
+        this.mContext = mContext;
+        this.playerRed = playerRed;
+        playerPosX = playerRed.getX()+50;
+        playerPosY = playerRed.getY()+80;
+
+    }
+
 	private ImageIcon[] imageChangeArray;
+
+    public Bubble(MainFrame mContext, PlayerBlue playerBlue) {
+        this.mContext = mContext;
+        this.playerBlue = playerBlue;
+        playerPosX = playerBlue.getX()+50;
+        playerPosY = playerBlue.getY()+80;
+
+    }
 
 	private ImageIcon bomb;
 	private ImageIcon bombdown;
@@ -29,34 +53,23 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bombright;
 	private ImageIcon bombup;
 
-	public Bubble(MainFrame mContext, PlayerRed playerRed) {
-		this.mContext = mContext;
-		this.playerRed = playerRed;
-		playerPosX = playerRed.getX() + 50;
-		playerPosY = playerRed.getY() + 80;
 
-	}
-
-	public Bubble(MainFrame mContext, PlayerBlue playerBlue) {
-		this.mContext = mContext;
-		this.playerBlue = playerBlue;
-		playerPosX = playerBlue.getX() + 50;
-		playerPosY = playerBlue.getY() + 80;
-	}
-
+	
 	@Override
 	public void run() {
+
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					bubblePosX = i * 100;
-					bubblePosY = j * 100;
-					jlabelPosX = j;
-					jlabelPosY = i;
+					playerPosX = i*100;
+                    playerPosY = j*100;
+                    jLabelPosX = j;
+                    jLabelPosY = i;
 				}
 			}
 		}
+
 		mContext.panelCenter.add(this, 0);
 		imageChangeArray = new ImageIcon[4];
 		imageChangeArray[0] = new ImageIcon("img/bomb_Action__main.png");
@@ -66,8 +79,7 @@ public class Bubble extends JLabel implements Runnable {
 
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
-		setLocation(bubblePosX, bubblePosY);
-
+		setLocation(playerPosX, playerPosY);
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -79,58 +91,58 @@ public class Bubble extends JLabel implements Runnable {
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		// mContext.backgroundImage[playerPosY / 100][playerPosX / 100].setIcon(null);
-//		mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].setIcon(null);
-//		mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].setIcon(null);
-//		mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].setIcon(null);
-//		mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].setIcon(null);
+		
+		if (jLabelPosX == 0 && jLabelPosY == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
 
-		if (jlabelPosY == 9 && jlabelPosX == 0) {
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
-		} else if (jlabelPosX == 9 && jlabelPosY == 9) {
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
+		} else if (jLabelPosX == 9 && jLabelPosY == 0) {
+			System.out.println("9/0 왼쪽아래");
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
 
-		} else if (jlabelPosX == 9 && jlabelPosY == 0) {
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
+		} else if (jLabelPosX == 0 && jLabelPosY == 9) {
+			System.out.println("0/9");
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 
-		} else if (jlabelPosX == 0 && jlabelPosY == 0) {
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+		} else if (jLabelPosX == 9 && jLabelPosY == 9) {
+			System.out.println("9/9");
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 
-		} else if (jlabelPosX == 0) {
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
+		} else if (jLabelPosX == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 
-		} else if (jlabelPosY == 0) {
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
-
-		} else if (jlabelPosY == 9) {
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-		} else if (jlabelPosX == 9) {
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
-
+		} else if (jLabelPosX == 9) {
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+		} else if (jLabelPosY == 0) {
+			System.out.println("y0");
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+		} else if (jLabelPosY == 9) {
+			System.out.println("y9");
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 		} else {
-			mContext.backgroundImage[jlabelPosX][jlabelPosY + 1].bubbled();
-			mContext.backgroundImage[jlabelPosX][jlabelPosY - 1].bubbled();
-			mContext.backgroundImage[jlabelPosX + 1][jlabelPosY].bubbled();
-			mContext.backgroundImage[jlabelPosX - 1][jlabelPosY].bubbled();
-
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 		}
-
+		
+		
+		mContext.nullBubble(this);
 	}
+
 
 }

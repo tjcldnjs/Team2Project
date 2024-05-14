@@ -7,6 +7,8 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 	MainFrame mContext;
 
+	Bubble bubble;
+
 	private int x;
 	private int y;
 	private int walkCount;
@@ -44,7 +46,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 	private boolean rightWallCrash;
 	private boolean upWallCrash;
 	private boolean downWallCrash;
-	
 
 	private final int SPEED = 1;
 
@@ -159,8 +160,6 @@ public class PlayerBlue extends JLabel implements Moveable {
 		up = false;
 		down = false;
 
-
-		
 		x = 10;
 		y = 100;
 
@@ -391,9 +390,11 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-				
-		new Thread(new Bubble(mContext, this)).start();
-
+		bubble = new Bubble(mContext, this);
+		new Thread(bubble).start();
+	
 	}
+	
+	
 
 }
