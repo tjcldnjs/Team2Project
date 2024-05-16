@@ -15,6 +15,9 @@ public class Bubble extends JLabel implements Runnable{
 	int bubblePosY;
 	int playerPosX;
 	int playerPosY;
+	int jlabelPosX;
+	int jlabelPosY;
+	 
 
     private ImageIcon bubble;
 
@@ -52,6 +55,8 @@ public class Bubble extends JLabel implements Runnable{
 
     
 
+	
+	
 	@Override
 	public void run() {
 
@@ -61,6 +66,9 @@ public class Bubble extends JLabel implements Runnable{
 						&& playerPosY <= (j + 1) * 100) {
 					playerPosX = i*100;
 					playerPosY = j*100;
+					jlabelPosX = j;
+					jlabelPosY = i;
+					
 				}
 			}
 		}
@@ -92,6 +100,9 @@ public class Bubble extends JLabel implements Runnable{
 				e.printStackTrace();
 			}
 		}
+		
+		mContext.backgroundImage[jlabelPosX][jlabelPosY].setIcon(null);
+		  
 	}
 
 
