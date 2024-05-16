@@ -68,21 +68,15 @@ public class BackgroundImage extends JLabel {
 			@Override
 			public void run() {
 
-				if (imageStatus == 1 || imageStatus == 0) {
-
-				} else if (imageStatus == 2) {
-					setIcon(floor);
-
-					mContext.reviseBufferImage(x, y);
-				}
+			
 				if (bombImage.equals("bomb")) {
 					setIcon(bomb);
-
+					playerDie(x,y);
 					mContext.reviseBufferImage(x, y);
 					clearbubble();
 
 				} else if (bombImage.equals("bombUp") && imageStatus != 1) {
-					setIcon(bombUp);
+					setIcon(bombUp); 
 
 					playerDie(x,y);
 
@@ -90,17 +84,17 @@ public class BackgroundImage extends JLabel {
 					clearbubble();
 				} else if (bombImage.equals("bombDown") && imageStatus != 1) {
 					setIcon(bombDown);
-
+					playerDie(x,y);
 					mContext.reviseBufferImage(x, y);
 					clearbubble();
 				} else if (bombImage.equals("bombLeft") && imageStatus != 1) {
 					setIcon(bombLeft);
-
+					playerDie(x,y);
 					mContext.reviseBufferImage(x, y);
 					clearbubble();
 				} else if (bombImage.equals("bombRight") && imageStatus != 1) {
 					setIcon(bombRight);
-
+					playerDie(x,y);
 					mContext.reviseBufferImage(x, y);
 					clearbubble();
 				}
