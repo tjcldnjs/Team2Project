@@ -26,8 +26,8 @@ public class MainFrame extends JFrame {
 
 	BufferedImage newBI;
 	// -----------------------------------
-	private PlayerRed playerRed;
-	private PlayerBlue playerBlue;
+	PlayerRed playerRed;//get set
+	PlayerBlue playerBlue;//get set
 
 	private final int PANELARRAY_SIZE = 10;
 	private final int PANEL_SIZE_XY = 100;
