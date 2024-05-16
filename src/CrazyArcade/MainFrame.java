@@ -19,24 +19,27 @@ import javax.swing.JPanel;
 public class MainFrame extends JFrame {
 
 	MainFrame mContext = this;
+	private MapData mapData;
 
 	private JButton startButton;
 	JPanel panelCenter;
 	private JPanel panelSouth;
 
 	BufferedImage newBI;
-	
-
 	// -----------------------------------
-	private PlayerRed playerRed;
-	private PlayerBlue playerBlue;
+	 PlayerRed playerRed;
+	 PlayerBlue playerBlue;
 
-	private final int PANELARRAY_SIZE = 10;
-	private final int PANEL_SIZE_XY = 100;
+	BackgroundPlayerBlueService blueService;
+	BackgroundPlayerRedService redService;
+
+	final int PANELARRAY_SIZE = 10;
+	final int PANEL_SIZE_XY = 100;
 
 	private boolean isButtonPressed;
 	BackgroundImage[][] backgroundImage = new BackgroundImage[PANELARRAY_SIZE][PANELARRAY_SIZE];
-	private CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
+
+	CreatePanel[][] panelArray = new CreatePanel[PANELARRAY_SIZE][PANELARRAY_SIZE];
 
 	public MainFrame() {
 
@@ -53,10 +56,16 @@ public class MainFrame extends JFrame {
 
 		// isButtonPressed = true;
 
+		blueService = new BackgroundPlayerBlueService(playerBlue);
+		redService = new BackgroundPlayerRedService(playerRed);
 
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
-		new Thread(new BackgroundPlayerRedService(playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
+
+		new Thread(blueService).start();
+		new Thread(redService).start();
+		// -----------------------------------
+
 		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
 
 	}
@@ -68,12 +77,6 @@ public class MainFrame extends JFrame {
 		panelCenter = new JPanel();
 		panelSouth = new JPanel();
 		startButton = new JButton();
-
-
-		 playerRed = new PlayerRed(mContext);
-		 playerBlue = new PlayerBlue(mContext);
-
-	
 
 		playerRed = new PlayerRed(mContext);
 		playerBlue = new PlayerBlue(mContext);
@@ -113,132 +116,22 @@ public class MainFrame extends JFrame {
 	}
 
 	private void testEventListener() {
-		Scanner sc = new Scanner(System.in);
-		int startNum = sc.nextInt();
-		if (startNum == 1) {
-//			panelArray[0][2].setBackground(Color.blue);
-			panelArray[1][2].setBackground(Color.blue);
-			panelArray[2][2].setBackground(Color.blue);
-			panelArray[2][1].setBackground(Color.blue);
-			panelArray[2][0].setBackground(Color.blue);
-			panelArray[7][9].setBackground(Color.blue);
-			panelArray[7][8].setBackground(Color.blue);
-			panelArray[7][7].setBackground(Color.blue);
-			panelArray[8][7].setBackground(Color.blue);
-//			panelArray[9][7].setBackground(Color.blue);
 
-			panelArray[4][4].setBackground(Color.red);
-			panelArray[4][5].setBackground(Color.red);
-			panelArray[5][4].setBackground(Color.red);
-			panelArray[5][5].setBackground(Color.red);
-			createNewBufferdImage();
-			drawMapElements();
-		} else if (startNum == 2) {
+		boolean flag = true;
+		mapData = new MapData(mContext);
+		while (flag) {
+			Scanner sc = new Scanner(System.in);
+			int mapNum = sc.nextInt();
+			if (mapNum < 0 || mapNum > 4) {
+				System.out.println("1번 또는 2번 또는 3번 또는 4번을 선택해주세요.");
 
-			for (int i = 0; i < PANELARRAY_SIZE; i++) {
-				for (int j = 0; j < PANELARRAY_SIZE; j++) {
-					panelArray[i][j].setBackground(Color.white);
-
-				}
+			} else {
+				mapData.setMap(mapNum);
+				flag = false;
 			}
-			// 1
-
-			panelArray[0][2].setBackground(Color.blue);
-			panelArray[0][4].setBackground(Color.blue);
-			panelArray[0][5].setBackground(Color.red);
-			panelArray[0][7].setBackground(Color.red);
-			panelArray[0][9].setBackground(Color.red);
-
-			// 2행
-			panelArray[1][2].setBackground(Color.blue);
-			panelArray[1][4].setBackground(Color.blue);
-			panelArray[1][5].setBackground(Color.blue);
-			panelArray[1][8].setBackground(Color.blue);
-
-			// 3행
-			panelArray[2][0].setBackground(Color.blue);
-			panelArray[2][1].setBackground(Color.blue);
-			panelArray[2][2].setBackground(Color.blue);
-			panelArray[2][4].setBackground(Color.red);
-			panelArray[2][5].setBackground(Color.blue);
-			panelArray[2][6].setBackground(Color.red);
-			panelArray[2][7].setBackground(Color.blue);
-			panelArray[2][9].setBackground(Color.red);
-
-			// 4행
-			panelArray[3][4].setBackground(Color.blue);
-			panelArray[3][5].setBackground(Color.blue);
-			panelArray[3][6].setBackground(Color.blue);
-			panelArray[3][7].setBackground(Color.red);
-
-			// 5행
-			panelArray[4][0].setBackground(Color.blue);
-			panelArray[4][1].setBackground(Color.red);
-			panelArray[4][2].setBackground(Color.blue);
-			panelArray[4][3].setBackground(Color.red);
-			panelArray[4][4].setBackground(Color.red);
-			panelArray[4][5].setBackground(Color.red);
-			panelArray[4][6].setBackground(Color.blue);
-			panelArray[4][7].setBackground(Color.blue);
-			panelArray[4][8].setBackground(Color.blue);
-			panelArray[4][9].setBackground(Color.red);
-
-			// 6행
-			panelArray[5][0].setBackground(Color.blue);
-			panelArray[5][1].setBackground(Color.blue);
-			panelArray[5][2].setBackground(Color.blue);
-			panelArray[5][3].setBackground(Color.blue);
-			panelArray[5][4].setBackground(Color.red);
-			panelArray[5][5].setBackground(Color.red);
-			panelArray[5][6].setBackground(Color.blue);
-			panelArray[5][7].setBackground(Color.red);
-			panelArray[5][8].setBackground(Color.blue);
-			panelArray[5][9].setBackground(Color.blue);
-
-			// 7행
-			panelArray[6][2].setBackground(Color.red);
-			panelArray[6][3].setBackground(Color.blue);
-			panelArray[6][4].setBackground(Color.blue);
-			panelArray[6][5].setBackground(Color.blue);
-
-			// 8행
-			panelArray[7][0].setBackground(Color.red);
-			panelArray[7][2].setBackground(Color.blue);
-			panelArray[7][3].setBackground(Color.red);
-			panelArray[7][4].setBackground(Color.blue);
-			panelArray[7][5].setBackground(Color.blue);
-			panelArray[7][7].setBackground(Color.blue);
-			panelArray[7][8].setBackground(Color.blue);
-			panelArray[7][9].setBackground(Color.blue);
-
-			// 9행
-			panelArray[8][1].setBackground(Color.blue);
-			panelArray[8][4].setBackground(Color.blue);
-			panelArray[8][5].setBackground(Color.red);
-			panelArray[8][7].setBackground(Color.blue);
-
-			// 10행
-			panelArray[9][0].setBackground(Color.red);
-			panelArray[9][2].setBackground(Color.red);
-			panelArray[9][4].setBackground(Color.blue);
-			panelArray[9][5].setBackground(Color.blue);
-			panelArray[9][7].setBackground(Color.blue);
-
-			createNewBufferdImage();
-			drawMapElements();
-		} else if (startNum == 3) {
-			panelArray[0][2].setBackground(Color.blue);
-			panelArray[1][2].setBackground(Color.blue);
-			panelArray[2][2].setBackground(Color.blue);
-			panelArray[2][1].setBackground(Color.blue);
-			panelArray[2][0].setBackground(Color.blue);
-			panelArray[7][9].setBackground(Color.blue);
-			panelArray[7][8].setBackground(Color.blue);
-			panelArray[7][7].setBackground(Color.blue);
-			panelArray[8][7].setBackground(Color.blue);
-			panelArray[9][7].setBackground(Color.blue);
 		}
-
+		createNewBufferdImage();
+		drawMapElements();
 	}
 
 	// 100개의 panel.getColor 후 panelcenter에 그린후 -> panelcneter ->bufferedImage로 변환
@@ -272,26 +165,19 @@ public class MainFrame extends JFrame {
 		panelCenter.add(playerRed);
 		playerRed.setVisible(true);
 		playerBlue.setVisible(true);
-		bufferImageTest();
 		return newBI;
 	}
-	public void bufferImageTest() {
-		int height = newBI.getHeight();
-		int width = newBI.getWidth();
-		Graphics2D graphics2d = newBI.createGraphics();
-		graphics2d.setColor(Color.white);
-		graphics2d.fillRect(0, 0, 500, 500);
-		try {
-			// retrieve image
-			File outputfile = new File("saved1.png");
-			ImageIO.write(newBI, "png", outputfile);
-		} catch (IOException e) {
-			// handle exception
-		}
+
+	public void reviseBufferImage(int x, int y) {
+		Graphics2D graphic2D = newBI.createGraphics();
+		graphic2D.setColor(Color.white);
+		graphic2D.fillRect(x * 100, y * 100, PANEL_SIZE_XY, PANEL_SIZE_XY);
+		blueService.setNewImage();
+		redService.setNewImage();
 	}
 
 	public void drawMapElements() {
-		
+
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				panelArray[i][j].setVisible(false);
@@ -313,6 +199,12 @@ public class MainFrame extends JFrame {
 			}
 		}
 
+	}
+
+	public void nullBubble(Bubble bubble) {
+		Bubble bubble2 = bubble;
+		bubble2.setVisible(false);
+		bubble2 = null;
 	}
 
 	public static void main(String[] args) {

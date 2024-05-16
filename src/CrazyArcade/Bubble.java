@@ -9,21 +9,22 @@ public class Bubble extends JLabel implements Runnable{
     PlayerBlue playerBlue;
     PlayerRed playerRed;
 
-
+    static int bubbleCount;
+  //  static int bubbleCountBlue;
 
 	int bubblePosX;
 	int bubblePosY;
 	int playerPosX;
 	int playerPosY;
-	int jlabelPosX;
-	int jlabelPosY;
-	 
+	int jLabelPosX;
+	int jLabelPosY;
 
     private ImageIcon bubble;
 
    
 
 	private int imageChaneIndex;
+
 	private ImageIcon bombomb_Action__main;
 	private ImageIcon bombomb_Action_1;
 	private ImageIcon bombomb_Action_2;
@@ -32,9 +33,9 @@ public class Bubble extends JLabel implements Runnable{
     public Bubble(MainFrame mContext, PlayerRed playerRed) {
         this.mContext = mContext;
         this.playerRed = playerRed;
-        playerPosX = playerRed.getX()+50;
+        playerPosX = playerRed.getX()+50; 
         playerPosY = playerRed.getY()+80;
-
+        bubbleCount++;
     }
 
 	private ImageIcon[] imageChangeArray;
@@ -44,6 +45,7 @@ public class Bubble extends JLabel implements Runnable{
         this.playerBlue = playerBlue;
         playerPosX = playerBlue.getX()+50;
         playerPosY = playerBlue.getY()+80;
+        bubbleCount++;
 
     }
 
@@ -53,9 +55,7 @@ public class Bubble extends JLabel implements Runnable{
 	private ImageIcon bombright;
 	private ImageIcon bombup;
 
-    
 
-	
 	
 	@Override
 	public void run() {
@@ -64,11 +64,10 @@ public class Bubble extends JLabel implements Runnable{
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					playerPosX = i*100;
-					playerPosY = j*100;
-					jlabelPosX = j;
-					jlabelPosY = i;
-					
+					bubblePosX = i*100;
+					bubblePosY = j*100;
+                    jLabelPosX = j;
+                    jLabelPosY = i;
 				}
 			}
 		}
@@ -82,9 +81,7 @@ public class Bubble extends JLabel implements Runnable{
 
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
-		setLocation(playerPosX, playerPosY);
-	
-		
+		setLocation(bubblePosX, bubblePosY);
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -96,13 +93,62 @@ public class Bubble extends JLabel implements Runnable{
 			try {
 				Thread.sleep(200);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		
-		mContext.backgroundImage[jlabelPosX][jlabelPosY].setIcon(null);
-		  
+		if (jLabelPosX == 0 && jLabelPosY == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 9 && jLabelPosY == 0) {
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 0 && jLabelPosY == 9) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 9 && jLabelPosY == 9) {
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 9) {
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+		} else if (jLabelPosY == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+		} else if (jLabelPosY == 9) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+			
+		} else {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);	
+		} 
+			mContext.playerRed.bubbleCountRed--; // get set
+			
+			mContext.playerBlue.bubbleCountBlue--; // get set
 	}
 
 

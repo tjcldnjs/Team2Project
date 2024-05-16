@@ -20,6 +20,10 @@ public class BackgroundPlayerRedService implements Runnable {
 		image = this.playerRed.mContext.newBI;
 	}
 
+	public void setNewImage() {
+		image = this.playerRed.mContext.newBI;
+	}
+
 	@Override
 	public void run() {
 		while (true) {
