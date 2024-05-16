@@ -62,7 +62,7 @@ public class BackgroundImage extends JLabel {
 		}
 	}
 
-	public void bubbled(String bombImage, int y, int x) {
+	public boolean bubbled(String bombImage, int y, int x) {
 		new Thread(new Runnable() {
 
 			@Override
@@ -72,31 +72,44 @@ public class BackgroundImage extends JLabel {
 
 				} else if (imageStatus == 2) {
 					setIcon(floor);
+
 					mContext.reviseBufferImage(x, y);
 				}
 				if (bombImage.equals("bomb")) {
-					setIcon(bomb);					
-					mContext.reviseBufferImage(x, y);
+					setIcon(bomb);
 
-				} else if (bombImage.equals("bombUp")) {
+					mContext.reviseBufferImage(x, y);
+					clearbubble();
+
+				} else if (bombImage.equals("bombUp") && imageStatus != 1) {
 					setIcon(bombUp);
+
+					playerDie(x,y);
+
 					mContext.reviseBufferImage(x, y);
-				} else if (bombImage.equals("bombDown")) {
+					clearbubble();
+				} else if (bombImage.equals("bombDown") && imageStatus != 1) {
 					setIcon(bombDown);
+
 					mContext.reviseBufferImage(x, y);
-				} else if (bombImage.equals("bombLeft")) {
+					clearbubble();
+				} else if (bombImage.equals("bombLeft") && imageStatus != 1) {
 					setIcon(bombLeft);
+
 					mContext.reviseBufferImage(x, y);
-				} else if (bombImage.equals("bombRight")) {
+					clearbubble();
+				} else if (bombImage.equals("bombRight") && imageStatus != 1) {
 					setIcon(bombRight);
+
 					mContext.reviseBufferImage(x, y);
+					clearbubble();
 				}
-				clearbubble();
 			}
 		}).start();
+		return true;
 	}
 
-	public void clearbubble() {
+	public boolean clearbubble() {
 		try {
 			Thread.sleep(200);
 		} catch (InterruptedException e) {
@@ -104,6 +117,33 @@ public class BackgroundImage extends JLabel {
 		}
 		setIcon(floor);
 		flag = false;
+		return true;
+	}
+	
+	public void playerDie(int x,int y) {
+		int BlueX = mContext.playerBlue.getX() + 50;
+		int BlueY = mContext.playerBlue.getY() + 80;
+		int RedX = mContext.playerRed.getX() + 50;
+		int RedY = mContext.playerRed.getY() + 80;
+
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (i * 100 < BlueX && BlueX <= (i + 1) * 100 && j * 100 <= BlueY
+						&& BlueY <= (j + 1) * 100) {
+					if(i == x && j == y) {
+						mContext.playerBlue.setVisible(false);
+					}
+				}
+				if (i * 100 < RedX && RedX <= (i + 1) * 100 && j * 100 <= RedY
+						&& RedY <= (j + 1) * 100) {
+					if(i == x && j == y) {
+						mContext.playerRed.setVisible(false);
+					}
+
+				}
+
+			}
+		}
 	}
 
 }

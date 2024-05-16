@@ -344,10 +344,10 @@ public class PlayerBlue extends JLabel implements Moveable {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					if (mContext.backgroundImage[j][i].flag == false && bubbleCountBlue < 5) {
+					if (mContext.backgroundImage[j][i].flag == false) {
 						mContext.backgroundImage[j][i].flag = true;
-						new Thread(new Bubble(mContext, this)).start();
-						bubbleCountBlue++;
+						new Thread(new Bubble(mContext, this,j,i)).start();
+				
 					}else {
 						System.out.println("이미 버블이 있음");
 					}

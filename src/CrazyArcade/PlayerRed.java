@@ -3,10 +3,28 @@ package CrazyArcade;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+// Player 
+
+// PlayerBlue
+// 키보드 이벤트 오버라이드 처리 ( 직접 이벤트 구현)
+
+//PlayerRed
+//키보드 이벤트 오버라이드 처리 (직접 이벤트 구현) 
+
+// MainF
+// Player p1 = new PlayerBlue();
+//Player  p2 = new PlayerRed();
+
+
+// Player  n1 = new Player();
+// Player n2 = new Player();
+
+
 public class PlayerRed extends JLabel implements Moveable {
 
 	MainFrame mContext;
-
+	// 나의 겉모습 이미지 
+	
 	private int x;
 	private int y;
 	private int imageIconIndex;
@@ -338,12 +356,12 @@ public class PlayerRed extends JLabel implements Moveable {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					if (mContext.backgroundImage[j][i].flag == false && bubbleCountRed < 5) {
+					if (mContext.backgroundImage[j][i].flag == false ) {
 						mContext.backgroundImage[j][i].flag = true;
-						Bubble bubble = new Bubble(mContext, this);
+						Bubble bubble = new Bubble(mContext, this,j,i);
 						new Thread(bubble).start();
-						System.out.println(bubble.bubbleCount);
-						bubbleCountRed++;
+						
+						
 					} else {
 						System.out.println("이미 버블이 있음");
 					}
