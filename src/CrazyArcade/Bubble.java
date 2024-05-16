@@ -41,6 +41,8 @@ public class Bubble extends JLabel implements Runnable {
 		playerPosY = playerRed.getY() + 80;
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
+		BubbleBackground bubbleBackground = new BubbleBackground(this, playerRed);
+		new Thread(bubbleBackground).start();
 
 	}
 
@@ -52,6 +54,8 @@ public class Bubble extends JLabel implements Runnable {
 		playerPosX = playerBlue.getX() + 50;
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
+		BubbleBackground bubbleBackground = new BubbleBackground(this,playerBlue);
+		new Thread(bubbleBackground).start();
 
 	}
 
@@ -63,6 +67,7 @@ public class Bubble extends JLabel implements Runnable {
 
 	@Override
 	public void run() {
+		
 		bubblePosX = jLabelPosY * 100;
 		bubblePosY = jLabelPosX * 100;
 
