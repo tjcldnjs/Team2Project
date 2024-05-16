@@ -35,7 +35,7 @@ public class BubbleBackground implements Runnable{
 				System.out.println("2");
 				playerRed.setLeft(false);
 			}
-			if (bubble == null) {
+			if (bubble.status == false) {
 				playerRed.setLeft(true);
 				flag = false;
 			}

@@ -28,6 +28,8 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bubble;
 
 	private int imageChaneIndex;
+	
+	boolean status = true;
 
 	private ImageIcon bombomb_Action__main;
 	private ImageIcon bombomb_Action_1;

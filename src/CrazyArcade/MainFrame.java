@@ -205,6 +205,7 @@ public class MainFrame extends JFrame {
 		Bubble bubble2 = bubble;
 		bubble2.setVisible(false);
 		bubble2 = null;
+		bubble.status = false;
 	}
 
 	public static void main(String[] args) {
