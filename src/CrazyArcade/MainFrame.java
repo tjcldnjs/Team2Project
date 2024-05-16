@@ -27,8 +27,8 @@ public class MainFrame extends JFrame {
 
 	BufferedImage newBI;
 	// -----------------------------------
-	private PlayerRed playerRed;
-	private PlayerBlue playerBlue;
+	PlayerRed playerRed;//get set
+	PlayerBlue playerBlue;//get set
 
 	BackgroundPlayerBlueService blueService;
 	BackgroundPlayerRedService redService;

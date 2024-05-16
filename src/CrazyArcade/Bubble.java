@@ -9,7 +9,8 @@ public class Bubble extends JLabel implements Runnable{
     PlayerBlue playerBlue;
     PlayerRed playerRed;
 
-
+    static int bubbleCount;
+  //  static int bubbleCountBlue;
 
 	int bubblePosX;
 	int bubblePosY;
@@ -32,9 +33,9 @@ public class Bubble extends JLabel implements Runnable{
     public Bubble(MainFrame mContext, PlayerRed playerRed) {
         this.mContext = mContext;
         this.playerRed = playerRed;
-        playerPosX = playerRed.getX()+50;
+        playerPosX = playerRed.getX()+50; 
         playerPosY = playerRed.getY()+80;
-
+        bubbleCount++;
     }
 
 	private ImageIcon[] imageChangeArray;
@@ -44,6 +45,7 @@ public class Bubble extends JLabel implements Runnable{
         this.playerBlue = playerBlue;
         playerPosX = playerBlue.getX()+50;
         playerPosY = playerBlue.getY()+80;
+        bubbleCount++;
 
     }
 
@@ -62,8 +64,13 @@ public class Bubble extends JLabel implements Runnable{
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
+<<<<<<< HEAD
 					playerPosX = i*100;
                     playerPosY = j*100;
+=======
+					bubblePosX = i*100;
+					bubblePosY = j*100;
+>>>>>>> player5
                     jLabelPosX = j;
                     jLabelPosY = i;
 				}
@@ -79,7 +86,7 @@ public class Bubble extends JLabel implements Runnable{
 
 		setIcon(bombomb_Action__main);
 		setSize(100, 100);
-		setLocation(playerPosX, playerPosY);
+		setLocation(bubblePosX, bubblePosY);
 		imageChaneIndex = 0;
 		for (int i = 0; i < 15; i++) {
 
@@ -98,13 +105,18 @@ public class Bubble extends JLabel implements Runnable{
 		if (jLabelPosX == 0 && jLabelPosY == 0) {
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+<<<<<<< HEAD
+=======
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+>>>>>>> player5
 
 		} else if (jLabelPosX == 9 && jLabelPosY == 0) {
-			System.out.println("9/0 왼쪽아래");
 			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
 
 		} else if (jLabelPosX == 0 && jLabelPosY == 9) {
+<<<<<<< HEAD
 			System.out.println("0/9");
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
@@ -113,16 +125,31 @@ public class Bubble extends JLabel implements Runnable{
 			System.out.println("9/9");
 			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+=======
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+
+		} else if (jLabelPosX == 9 && jLabelPosY == 9) {
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+>>>>>>> player5
 
 		} else if (jLabelPosX == 0) {
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+<<<<<<< HEAD
+=======
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+>>>>>>> player5
 
 		} else if (jLabelPosX == 9) {
 			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+<<<<<<< HEAD
 		} else if (jLabelPosY == 0) {
 			System.out.println("y0");
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
@@ -133,11 +160,26 @@ public class Bubble extends JLabel implements Runnable{
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+=======
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+		} else if (jLabelPosY == 0) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+		} else if (jLabelPosY == 9) {
+			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);
+			
+>>>>>>> player5
 		} else {
 			mContext.backgroundImage[jLabelPosX + 1][jLabelPosY].bubbled("bombDown",jLabelPosX + 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX - 1][jLabelPosY].bubbled("bombUp",jLabelPosX - 1,jLabelPosY);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled("bombRight",jLabelPosX,jLabelPosY + 1);
 			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled("bombLeft",jLabelPosX,jLabelPosY - 1);
+<<<<<<< HEAD
 		}
 		
 		
@@ -179,6 +221,13 @@ public class Bubble extends JLabel implements Runnable{
 //			mContext.backgroundImage[jLabelPosX][jLabelPosY + 1].bubbled(1);
 //			mContext.backgroundImage[jLabelPosX][jLabelPosY - 1].bubbled(1);
 		}
+=======
+			mContext.backgroundImage[jLabelPosX][jLabelPosY].bubbled("bomb",jLabelPosX,jLabelPosY);	
+		} 
+			mContext.playerRed.bubbleCountRed--; // get set
+			
+			mContext.playerBlue.bubbleCountBlue--; // get set
+>>>>>>> player5
 	}
 
 

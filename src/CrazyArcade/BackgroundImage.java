@@ -19,7 +19,12 @@ public class BackgroundImage extends JLabel {
 
 	private MainFrame mContext;
 
+<<<<<<< HEAD
 	
+=======
+	boolean flag = false;
+
+>>>>>>> player5
 	private int imageStatus;
 
 	public BackgroundImage(MainFrame mContext, int i, int j) {
@@ -29,8 +34,8 @@ public class BackgroundImage extends JLabel {
 		unbreakBox = new ImageIcon("img/box_unbreak.png");
 		breakBox = new ImageIcon("img/box_breakable.png");
 		floor = new ImageIcon("img/main_background1.png");
-		
-		bomb = new ImageIcon("img/bomb.png");
+
+		bomb = new ImageIcon("img/bombed.png");
 		bombUp = new ImageIcon("img/bombup.png");
 		bombDown = new ImageIcon("img/bombdown.png");
 		bombRight = new ImageIcon("img/bombright.png");
@@ -61,6 +66,7 @@ public class BackgroundImage extends JLabel {
 		}
 	}
 
+<<<<<<< HEAD
 
 	public void bubbled(String a, int y, int x) {
 		if(imageStatus == 1 || imageStatus == 0) {
@@ -68,6 +74,42 @@ public class BackgroundImage extends JLabel {
 		} else if(imageStatus == 2) {
 			setIcon(floor);
 			mContext.reviseBufferImage(x, y);
+=======
+	public void bubbled(String bombImage, int y, int x) {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+
+				if (imageStatus == 1 || imageStatus == 0) {
+
+				} else if (imageStatus == 2) {
+					setIcon(floor);
+				}
+				if (bombImage.equals("bomb")) {
+					setIcon(bomb);
+				} else if (bombImage.equals("bombUp")) {
+					setIcon(bombUp);
+				} else if (bombImage.equals("bombDown")) {
+					setIcon(bombDown);
+				} else if (bombImage.equals("bombLeft")) {
+					setIcon(bombLeft);
+				} else if (bombImage.equals("bombRight")) {
+					setIcon(bombRight);
+				}
+				clearbubble();
+			}
+		}).start();
+	}
+
+	public void clearbubble() {
+		try {
+			Thread.sleep(200);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+>>>>>>> player5
 		}
+		setIcon(floor);
+		flag = false;
 	}
 }
