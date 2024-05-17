@@ -119,6 +119,7 @@ public class MainFrame extends JFrame {
 
 		boolean flag = true;
 		mapData = new MapData(mContext);
+		mapData.setMap(0);
 		while (flag) {
 			Scanner sc = new Scanner(System.in);
 			int mapNum = sc.nextInt();

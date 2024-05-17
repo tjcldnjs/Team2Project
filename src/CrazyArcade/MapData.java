@@ -12,15 +12,20 @@ public class MapData {
 
 	public void setMap(int mapNum) {
 		if (mapNum == 1) {
-//			mContext.panelArray[0][2].setBackground(Color.blue);
-			mContext.panelArray[1][2].setBackground(Color.blue);
-			mContext.panelArray[2][2].setBackground(Color.blue);
-			mContext.panelArray[2][1].setBackground(Color.blue);
+			mContext.panelArray[0][0].setBackground(Color.red);
+			mContext.panelArray[0][3].setBackground(Color.blue);
+			mContext.panelArray[1][3].setBackground(Color.blue);
 			mContext.panelArray[2][0].setBackground(Color.blue);
-			mContext.panelArray[7][9].setBackground(Color.blue);
-			mContext.panelArray[7][8].setBackground(Color.blue);
+			mContext.panelArray[2][1].setBackground(Color.blue);
+			mContext.panelArray[2][2].setBackground(Color.blue);
+			mContext.panelArray[2][3].setBackground(Color.red);
+			mContext.panelArray[7][6].setBackground(Color.red);
 			mContext.panelArray[7][7].setBackground(Color.blue);
-			mContext.panelArray[8][7].setBackground(Color.blue);
+			mContext.panelArray[7][8].setBackground(Color.blue);
+			mContext.panelArray[7][9].setBackground(Color.blue);
+			mContext.panelArray[8][6].setBackground(Color.blue);
+			mContext.panelArray[9][6].setBackground(Color.blue);
+			mContext.panelArray[9][9].setBackground(Color.red);
 //			mContext.mContext.panelArray[9][7].setBackground(Color.blue);
 
 			mContext.panelArray[4][4].setBackground(Color.red);
@@ -37,14 +42,14 @@ public class MapData {
 			}
 			// 1
 
-			mContext.panelArray[0][2].setBackground(Color.blue);
+			mContext.panelArray[0][3].setBackground(Color.blue);
 			mContext.panelArray[0][4].setBackground(Color.blue);
 			mContext.panelArray[0][5].setBackground(Color.red);
 			mContext.panelArray[0][7].setBackground(Color.red);
 			mContext.panelArray[0][9].setBackground(Color.red);
 
 			// 2행
-			mContext.panelArray[1][2].setBackground(Color.blue);
+			mContext.panelArray[1][3].setBackground(Color.blue);
 			mContext.panelArray[1][4].setBackground(Color.blue);
 			mContext.panelArray[1][5].setBackground(Color.blue);
 			mContext.panelArray[1][8].setBackground(Color.blue);
@@ -53,6 +58,7 @@ public class MapData {
 			mContext.panelArray[2][0].setBackground(Color.blue);
 			mContext.panelArray[2][1].setBackground(Color.blue);
 			mContext.panelArray[2][2].setBackground(Color.blue);
+			mContext.panelArray[2][3].setBackground(Color.blue);
 			mContext.panelArray[2][4].setBackground(Color.red);
 			mContext.panelArray[2][5].setBackground(Color.blue);
 			mContext.panelArray[2][6].setBackground(Color.red);
@@ -101,6 +107,7 @@ public class MapData {
 			mContext.panelArray[7][3].setBackground(Color.red);
 			mContext.panelArray[7][4].setBackground(Color.blue);
 			mContext.panelArray[7][5].setBackground(Color.blue);
+			mContext.panelArray[7][6].setBackground(Color.blue);
 			mContext.panelArray[7][7].setBackground(Color.blue);
 			mContext.panelArray[7][8].setBackground(Color.blue);
 			mContext.panelArray[7][9].setBackground(Color.blue);
@@ -109,89 +116,102 @@ public class MapData {
 			mContext.panelArray[8][1].setBackground(Color.blue);
 			mContext.panelArray[8][4].setBackground(Color.blue);
 			mContext.panelArray[8][5].setBackground(Color.red);
-			mContext.panelArray[8][7].setBackground(Color.blue);
+			mContext.panelArray[8][6].setBackground(Color.blue);
 
 			// 10행
 			mContext.panelArray[9][0].setBackground(Color.red);
 			mContext.panelArray[9][2].setBackground(Color.red);
 			mContext.panelArray[9][4].setBackground(Color.blue);
 			mContext.panelArray[9][5].setBackground(Color.blue);
-			mContext.panelArray[9][7].setBackground(Color.blue);
+			mContext.panelArray[9][6].setBackground(Color.blue);
 
 		} else if (mapNum == 3) {
 			// 1행
-			mContext.panelArray[0][2].setBackground(Color.red);
+			mContext.panelArray[0][3].setBackground(Color.blue);
 			mContext.panelArray[0][4].setBackground(Color.blue);
 			mContext.panelArray[0][5].setBackground(Color.blue);
 
 			// 2행
-			mContext.panelArray[1][2].setBackground(Color.blue);
+			mContext.panelArray[1][3].setBackground(Color.blue);
 			mContext.panelArray[1][4].setBackground(Color.blue);
 			mContext.panelArray[1][5].setBackground(Color.blue);
 			mContext.panelArray[1][7].setBackground(Color.red);
 
 			// 3행
-			mContext.panelArray[2][2].setBackground(Color.red);
+			mContext.panelArray[2][0].setBackground(Color.blue);
+			mContext.panelArray[2][1].setBackground(Color.blue);
+			mContext.panelArray[2][2].setBackground(Color.blue);
+			mContext.panelArray[2][3].setBackground(Color.blue);
 			mContext.panelArray[2][4].setBackground(Color.blue);
 			mContext.panelArray[2][5].setBackground(Color.blue);
 
 			// 4행
-			mContext.panelArray[3][2].setBackground(Color.blue);
 			mContext.panelArray[3][4].setBackground(Color.blue);
 			mContext.panelArray[3][5].setBackground(Color.blue);
 			mContext.panelArray[3][7].setBackground(Color.red);
 
 			// 5행
-			mContext.panelArray[4][0].setBackground(Color.red);
-			mContext.panelArray[4][1].setBackground(Color.blue);
-			mContext.panelArray[4][2].setBackground(Color.red);
 			mContext.panelArray[4][4].setBackground(Color.blue);
 			mContext.panelArray[4][5].setBackground(Color.blue);
 
 			// 6행
 			mContext.panelArray[5][4].setBackground(Color.blue);
 			mContext.panelArray[5][5].setBackground(Color.blue);
-			mContext.panelArray[5][7].setBackground(Color.red);
-			mContext.panelArray[5][8].setBackground(Color.blue);
-			mContext.panelArray[5][9].setBackground(Color.red);
 
 			// 7행
 			mContext.panelArray[6][2].setBackground(Color.red);
 			mContext.panelArray[6][4].setBackground(Color.blue);
 			mContext.panelArray[6][5].setBackground(Color.blue);
-			mContext.panelArray[6][7].setBackground(Color.blue);
 
 			// 8행
 			mContext.panelArray[7][4].setBackground(Color.blue);
 			mContext.panelArray[7][5].setBackground(Color.blue);
-			mContext.panelArray[7][7].setBackground(Color.red);
+			mContext.panelArray[7][6].setBackground(Color.blue);
+			mContext.panelArray[7][7].setBackground(Color.blue);
+			mContext.panelArray[7][8].setBackground(Color.blue);
+			mContext.panelArray[7][9].setBackground(Color.blue);
 
 			// 9행
 			mContext.panelArray[8][2].setBackground(Color.red);
 			mContext.panelArray[8][4].setBackground(Color.blue);
 			mContext.panelArray[8][5].setBackground(Color.blue);
-			mContext.panelArray[8][7].setBackground(Color.blue);
+			mContext.panelArray[8][6].setBackground(Color.blue);
 
 			// 10행
 			mContext.panelArray[9][4].setBackground(Color.blue);
 			mContext.panelArray[9][5].setBackground(Color.blue);
-			mContext.panelArray[9][7].setBackground(Color.red);
+			mContext.panelArray[9][6].setBackground(Color.blue);
+			mContext.panelArray[9][9].setBackground(Color.red);
 		} else if (mapNum == 4) {
-			mContext.panelArray[0][1].setBackground(Color.blue);
-			mContext.panelArray[1][0].setBackground(Color.blue);
-			mContext.panelArray[1][2].setBackground(Color.blue);
+			mContext.panelArray[0][0].setBackground(Color.red);
+			mContext.panelArray[0][3].setBackground(Color.blue);
+			mContext.panelArray[1][3].setBackground(Color.blue);
+			mContext.panelArray[2][0].setBackground(Color.blue);
+			mContext.panelArray[2][1].setBackground(Color.blue);
 			mContext.panelArray[2][2].setBackground(Color.blue);
-			mContext.panelArray[3][1].setBackground(Color.blue);
-			mContext.panelArray[4][0].setBackground(Color.blue);
-			mContext.panelArray[5][8].setBackground(Color.blue);
-			mContext.panelArray[6][7].setBackground(Color.blue);
-			mContext.panelArray[6][9].setBackground(Color.blue);
+			mContext.panelArray[2][3].setBackground(Color.red);
+			mContext.panelArray[7][6].setBackground(Color.red);
 			mContext.panelArray[7][7].setBackground(Color.blue);
-			mContext.panelArray[8][8].setBackground(Color.blue);
-			mContext.panelArray[9][9].setBackground(Color.blue);
-
+			mContext.panelArray[7][8].setBackground(Color.blue);
+			mContext.panelArray[7][9].setBackground(Color.blue);
+			mContext.panelArray[8][6].setBackground(Color.blue);
+			mContext.panelArray[9][6].setBackground(Color.blue);
+			mContext.panelArray[9][9].setBackground(Color.red);
 		} else if (mapNum == 0) {
-
+			mContext.panelArray[0][0].setBackground(Color.red);
+			mContext.panelArray[0][3].setBackground(Color.blue);
+			mContext.panelArray[1][3].setBackground(Color.blue);
+			mContext.panelArray[2][0].setBackground(Color.blue);
+			mContext.panelArray[2][1].setBackground(Color.blue);
+			mContext.panelArray[2][2].setBackground(Color.blue);
+			mContext.panelArray[2][3].setBackground(Color.red);
+			mContext.panelArray[7][6].setBackground(Color.red);
+			mContext.panelArray[7][7].setBackground(Color.blue);
+			mContext.panelArray[7][8].setBackground(Color.blue);
+			mContext.panelArray[7][9].setBackground(Color.blue);
+			mContext.panelArray[8][6].setBackground(Color.blue);
+			mContext.panelArray[9][6].setBackground(Color.blue);
+			mContext.panelArray[9][9].setBackground(Color.red);
 		}
 	}
 }
