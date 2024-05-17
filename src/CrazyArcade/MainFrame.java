@@ -71,7 +71,7 @@ public class MainFrame extends JFrame {
 	}
 
 	private void initData() {
-		setSize(1000, 1100);// 메인 화면 1000,1000과 버튼 공간 1000,100
+		setSize(1017, 1040);// 메인 화면 1000,1000과 버튼 공간 1000,100
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		Icon icon = new ImageIcon("img/main_background1.png");
 		panelCenter = new JPanel();
@@ -85,7 +85,7 @@ public class MainFrame extends JFrame {
 		playerBlue.setVisible(false);
 
 		panelCenter.setSize(1000, 1000);
-		panelSouth.setSize(1000, 100);
+		//panelSouth.setSize(1000, 100);
 
 		isButtonPressed = true;
 	}
@@ -94,8 +94,8 @@ public class MainFrame extends JFrame {
 		panelCenter.setLayout(null); // 좌표
 		add(panelCenter, BorderLayout.CENTER);
 		// panelCenter.setBackground(Color.BLUE); 추후 수정 필요 이미지 아이콘으
-		add(panelSouth, BorderLayout.SOUTH);
-		panelSouth.add(startButton, BorderLayout.EAST);
+		//add(panelSouth, BorderLayout.SOUTH);
+	//	panelSouth.add(startButton, BorderLayout.EAST);
 //		 panelSouth.setLayout(new FlowLayout(FlowLayout.RIGHT));
 		addPanel();
 		setVisible(true);
