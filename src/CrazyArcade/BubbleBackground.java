@@ -3,15 +3,15 @@ package CrazyArcade;
 public class BubbleBackground implements Runnable {
 
 	Bubble bubble;
-	PlayerRed playerRed;
-	PlayerBlue playerBlue;
+	Player player1;
+	Player player2;
 	MainFrame mContext;
 	int bubblePosX;
 	int bubblePosY;
-	int playerRedPosX;
-	int playerRedPosY;
-	int playerBluePosX;
-	int playerBluePosY;
+	int player2PosX;
+	int player2PosY;
+	int player1PosX;
+	int player1PosY;
 
 	public BubbleBackground(Bubble bubble, MainFrame mContext) {
 		this.bubble = bubble;
@@ -19,11 +19,11 @@ public class BubbleBackground implements Runnable {
 		this.bubblePosX = bubble.jLabelPosY * 100;
 		this.bubblePosY = bubble.jLabelPosX * 100;
 		this.mContext = mContext;
-		this.playerRed = mContext.playerRed;
-		this.playerBlue = mContext.playerBlue;
+		this.player2 = mContext.player2;
+		this.player1 = mContext.player1;
 
-		playerRedPosX = mContext.playerRed.getX();
-		playerRedPosY = mContext.playerRed.getY();
+		player2PosX = mContext.player2.getX();
+		player2PosY = mContext.player2.getY();
 
 	}
 
@@ -37,70 +37,70 @@ public class BubbleBackground implements Runnable {
 		}
 		boolean flag = true;
 		while (flag) {
-			System.out.println("1");
+			//System.out.println("1");
 			System.out.println(bubblePosX);
-			if (playerRed.isLeft()) {
-				if (bubblePosX < playerRed.getX() && (playerRed.getX() - bubblePosX <= 90)
-						&& bubblePosY < playerRed.getY() + 80 && playerRed.getY() + 80 <= bubblePosY + 100) {
-					playerRed.setLeft(false);
+			if (player2.isLeft()) {
+				if (bubblePosX < player2.getX() && (player2.getX() - bubblePosX <= 90)
+						&& bubblePosY < player2.getY() + 80 && player2.getY() + 80 <= bubblePosY + 100) {
+					player2.setLeft(false);
 				} else {
-					playerRed.setLeft(true);
+					player2.setLeft(true);
 				}
-			} else if (playerRed.isRight()) {
-				if (bubblePosX > playerRed.getX() && Math.abs(playerRed.getX() - bubblePosX) <= 90
-						&& bubblePosY < playerRed.getY() + 80 && playerRed.getY() + 80 <= bubblePosY + 100) {
-					playerRed.setRight(false);
+			} else if (player2.isRight()) {
+				if (bubblePosX > player2.getX() && Math.abs(player2.getX() - bubblePosX) <= 90
+						&& bubblePosY < player2.getY() + 80 && player2.getY() + 80 <= bubblePosY + 100) {
+					player2.setRight(false);
 				} else {
-					playerRed.setRight(true);
+					player2.setRight(true);
 				}
-			} else if (playerRed.isUp()) {
-				if (bubblePosY < playerRed.getY() && Math.abs(playerRed.getY() - bubblePosY) <= 90
-						&& bubblePosX < playerRed.getX() + 50 && playerRed.getX() + 50 <= bubblePosX + 100) {
-					playerRed.setUp(false);
+			} else if (player2.isUp()) {
+				if (bubblePosY < player2.getY() && Math.abs(player2.getY() - bubblePosY) <= 90
+						&& bubblePosX < player2.getX() + 50 && player2.getX() + 50 <= bubblePosX + 100) {
+					player2.setUp(false);
 
 				}
 
-			} else if (playerRed.isDown()) {
-				if (bubblePosY > playerRed.getY() && Math.abs(playerRed.getY() - bubblePosY) <= 90
-						&& bubblePosX < playerRed.getX() + 50 && playerRed.getX() + 50 <= bubblePosX + 100) {
-					playerRed.setDown(false);
+			} else if (player2.isDown()) {
+				if (bubblePosY > player2.getY() && Math.abs(player2.getY() - bubblePosY) <= 90
+						&& bubblePosX < player2.getX() + 50 && player2.getX() + 50 <= bubblePosX + 100) {
+					player2.setDown(false);
 
 				}
 
 			}
-			if (playerBlue.isLeft()) {
-				if (bubblePosX < playerBlue.getX() && (playerBlue.getX() - bubblePosX <= 90)
-						&& bubblePosY < playerBlue.getY() + 80 && playerBlue.getY() + 80 <= bubblePosY + 100) {
-					playerBlue.setLeft(false);
+			if (player1.isLeft()) {
+				if (bubblePosX < player1.getX() && (player1.getX() - bubblePosX <= 90)
+						&& bubblePosY < player1.getY() + 80 && player1.getY() + 80 <= bubblePosY + 100) {
+					player1.setLeft(false);
 				} else {
-					playerBlue.setLeft(true);
+					player1.setLeft(true);
 				}
-			} else if (playerBlue.isRight()) {
-				if (bubblePosX > playerBlue.getX() && Math.abs(playerBlue.getX() - bubblePosX) <= 90
-						&& bubblePosY < playerBlue.getY() + 80 && playerBlue.getY() + 80 <= bubblePosY + 100) {
-					playerBlue.setRight(false);
+			} else if (player1.isRight()) {
+				if (bubblePosX > player1.getX() && Math.abs(player1.getX() - bubblePosX) <= 90
+						&& bubblePosY < player1.getY() + 80 && player1.getY() + 80 <= bubblePosY + 100) {
+					player1.setRight(false);
 				} else {
-					playerBlue.setRight(true);
+					player1.setRight(true);
 				}
-			} else if (playerBlue.isUp()) {
-				if (bubblePosY < playerBlue.getY() && Math.abs(playerBlue.getY() - bubblePosY) <= 90
-						&& bubblePosX < playerBlue.getX() + 50 && playerBlue.getX() + 50 <= bubblePosX + 100) {
-					playerBlue.setUp(false);
+			} else if (player1.isUp()) {
+				if (bubblePosY < player1.getY() && Math.abs(player1.getY() - bubblePosY) <= 90
+						&& bubblePosX < player1.getX() + 50 && player1.getX() + 50 <= bubblePosX + 100) {
+					player1.setUp(false);
 
 				}
 
-			} else if (playerBlue.isDown()) {
-				if (bubblePosY > playerBlue.getY() && Math.abs(playerBlue.getY() - bubblePosY) <= 90
-						&& bubblePosX < playerBlue.getX() + 50 && playerBlue.getX() + 50 <= bubblePosX + 100) {
-					playerBlue.setDown(false);
+			} else if (player1.isDown()) {
+				if (bubblePosY > player1.getY() && Math.abs(player1.getY() - bubblePosY) <= 90
+						&& bubblePosX < player1.getX() + 50 && player1.getX() + 50 <= bubblePosX + 100) {
+					player1.setDown(false);
 
 				}
 
 			}
 
 			if (bubble.status == false) {
-				playerRed.setLeft(true);
-				playerBlue.setLeft(true);
+				player2.setLeft(true);
+				player1.setLeft(true);
 				flag = false;
 			}
 			try {

@@ -27,8 +27,8 @@ public class MainFrame extends JFrame {
 
 	BufferedImage newBI;
 	// -----------------------------------
-	 PlayerRed playerRed;
-	 PlayerBlue playerBlue;
+	Player player1;
+	Player player2;
 
 	BackgroundPlayerBlueService blueService;
 	BackgroundPlayerRedService redService;
@@ -56,18 +56,17 @@ public class MainFrame extends JFrame {
 
 		// isButtonPressed = true;
 
-		blueService = new BackgroundPlayerBlueService(playerBlue);
-		redService = new BackgroundPlayerRedService(playerRed);
+		blueService = new BackgroundPlayerBlueService(player1);
+		redService = new BackgroundPlayerRedService(player2);
 
-		new Thread(new PlayerRedKey(mContext, playerRed)).start();
-		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
+		new Thread(new PlayerRedKey(mContext, player1)).start();
+		new Thread(new PlayerBlueKey(mContext, player2)).start();
 
 		new Thread(blueService).start();
 		new Thread(redService).start();
 		// -----------------------------------
 
-		new Thread(new BackgroundPlayerBlueService(playerBlue)).start();
-
+	
 	}
 
 	private void initData() {
@@ -78,11 +77,11 @@ public class MainFrame extends JFrame {
 		panelSouth = new JPanel();
 		startButton = new JButton();
 
-		playerRed = new PlayerRed(mContext);
-		playerBlue = new PlayerBlue(mContext);
+		player1 = new Player(1, mContext);
+		player2 = new Player(2, mContext);
 
-		playerRed.setVisible(false);
-		playerBlue.setVisible(false);
+		player1.setVisible(false);
+		player2.setVisible(false);
 
 		panelCenter.setSize(1000, 1000);
 		//panelSouth.setSize(1000, 100);
@@ -141,7 +140,7 @@ public class MainFrame extends JFrame {
 
 		Graphics centerG = panelCenter.getGraphics();
 		panelArray[0][0].setBackground(Color.red);
-		System.out.println(panelArray[0][0].getBackground());
+		//System.out.println(panelArray[0][0].getBackground());
 		for (int i = 0; i < PANELARRAY_SIZE; i++) {
 			for (int j = 0; j < PANELARRAY_SIZE; j++) {
 				centerG.setColor(panelArray[i][j].getBackground());
@@ -162,10 +161,10 @@ public class MainFrame extends JFrame {
 		} catch (IOException e) {
 			// handle exception
 		}
-		panelCenter.add(playerBlue);
-		panelCenter.add(playerRed);
-		playerRed.setVisible(true);
-		playerBlue.setVisible(true);
+		panelCenter.add(player2);
+		panelCenter.add(player1);
+		player1.setVisible(true);
+		player2.setVisible(true);
 		return newBI;
 	}
 

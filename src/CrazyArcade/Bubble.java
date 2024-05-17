@@ -5,8 +5,8 @@ import javax.swing.JLabel;
 
 public class Bubble extends JLabel implements Runnable {
 	MainFrame mContext;
-	PlayerBlue playerBlue;
-	PlayerRed playerRed;
+	Player player1;
+	Player player2;
 
 	// static --> 공유 ---> 각자 정보 --> 멤버 변수 --> (시리얼 넘버, 사원 번호)
 	// 1000 <--- 시리얼
@@ -34,11 +34,11 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bombomb_Action_2;
 	private ImageIcon bombomb_Action_3;
 
-	public Bubble(MainFrame mContext, PlayerRed playerRed, int jLabelPosx, int jLabelPosY) {
+	public Bubble(MainFrame mContext, int playerNum, int jLabelPosx, int jLabelPosY) {
 		this.mContext = mContext;
-		this.playerRed = playerRed;
-		playerPosX = playerRed.getX() + 50;
-		playerPosY = playerRed.getY() + 80;
+		this.player1 = mContext.player1;
+		this.player2 = mContext.player2;
+		
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
 		BubbleBackground bubbleBackground = new BubbleBackground(this, mContext);
@@ -48,16 +48,7 @@ public class Bubble extends JLabel implements Runnable {
 
 	private ImageIcon[] imageChangeArray;
 
-	public Bubble(MainFrame mContext, PlayerBlue playerBlue, int jLabelPosx, int jLabelPosY) {
-		this.mContext = mContext;
-		this.playerBlue = playerBlue;
-		playerPosX = playerBlue.getX() + 50;
-		this.jLabelPosX = jLabelPosx;
-		this.jLabelPosY = jLabelPosY;
-		BubbleBackground bubbleBackground = new BubbleBackground(this, mContext);
-		new Thread(bubbleBackground).start();
-
-	}
+	
 
 	private ImageIcon bomb;
 	private ImageIcon bombdown;

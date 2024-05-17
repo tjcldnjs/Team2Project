@@ -182,21 +182,6 @@ public class MapData {
 			mContext.panelArray[9][5].setBackground(Color.blue);
 			mContext.panelArray[9][6].setBackground(Color.blue);
 			mContext.panelArray[9][9].setBackground(Color.red);
-		} else if (mapNum == 4) {
-			mContext.panelArray[0][0].setBackground(Color.red);
-			mContext.panelArray[0][3].setBackground(Color.blue);
-			mContext.panelArray[1][3].setBackground(Color.blue);
-			mContext.panelArray[2][0].setBackground(Color.blue);
-			mContext.panelArray[2][1].setBackground(Color.blue);
-			mContext.panelArray[2][2].setBackground(Color.blue);
-			mContext.panelArray[2][3].setBackground(Color.red);
-			mContext.panelArray[7][6].setBackground(Color.red);
-			mContext.panelArray[7][7].setBackground(Color.blue);
-			mContext.panelArray[7][8].setBackground(Color.blue);
-			mContext.panelArray[7][9].setBackground(Color.blue);
-			mContext.panelArray[8][6].setBackground(Color.blue);
-			mContext.panelArray[9][6].setBackground(Color.blue);
-			mContext.panelArray[9][9].setBackground(Color.red);
 		} else if (mapNum == 0) {
 			mContext.panelArray[0][0].setBackground(Color.red);
 			mContext.panelArray[0][3].setBackground(Color.blue);

@@ -6,11 +6,11 @@ import java.awt.event.KeyEvent;
 public class PlayerRedKey implements Runnable {
 
 	private MainFrame mContext;
-	 PlayerRed player;
+	 Player player2;
 
-	public PlayerRedKey(MainFrame mContext, PlayerRed player) {
+	public PlayerRedKey(MainFrame mContext, Player player2) {
 		this.mContext = mContext;
-		this.player = player;
+		this.player2 = player2;
 	}
 
 	@Override
@@ -24,45 +24,45 @@ public class PlayerRedKey implements Runnable {
 
 				case KeyEvent.VK_LEFT:
 
-					if (!player.isLeft() && !player.isLeftWallCrash()) {
-						player.setUp(false);
-						player.setDown(false);
-						player.setRight(false);
-						player.left();
+					if (!player2.isLeft() && !player2.isLeftWallCrash()) {
+						player2.setUp(false);
+						player2.setDown(false);
+						player2.setRight(false);
+						player2.left();
 					}
 					break;
 
 				case KeyEvent.VK_RIGHT:
-					if (!player.isRight() && !player.isRightWallCrash()) {
-						player.setUp(false);
-						player.setDown(false);
-						player.setLeft(false);
-						player.right();
+					if (!player2.isRight() && !player2.isRightWallCrash()) {
+						player2.setUp(false);
+						player2.setDown(false);
+						player2.setLeft(false);
+						player2.right();
 					}
 					break;
 
 				case KeyEvent.VK_UP:
 
-					if (!player.isUp() && !player.isUpWallCrash()) {
-						player.setRight(false);
-						player.setDown(false);
-						player.setLeft(false);
-						player.up();
+					if (!player2.isUp() && !player2.isUpWallCrash()) {
+						player2.setRight(false);
+						player2.setDown(false);
+						player2.setLeft(false);
+						player2.up();
 					}
 					break;
 
 				case KeyEvent.VK_DOWN:
 
-					if (!player.isDown() && !player.isDownWallCrash()) {
-						player.setUp(false);
-						player.setRight(false);
-						player.setLeft(false);
-						player.down();
+					if (!player2.isDown() && !player2.isDownWallCrash()) {
+						player2.setUp(false);
+						player2.setRight(false);
+						player2.setLeft(false);
+						player2.down();
 					}
 					break;
 
 				case KeyEvent.VK_SPACE:
-					player.attack();
+					player2.attack();
 					break;
 				default:
 					break;
@@ -76,19 +76,19 @@ public class PlayerRedKey implements Runnable {
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_LEFT:
-					player.setLeft(false);
+					player2.setLeft(false);
 					break;
 
 				case KeyEvent.VK_RIGHT:
-					player.setRight(false);
+					player2.setRight(false);
 					break;
 
 				case KeyEvent.VK_UP:
-					player.setUp(false);
+					player2.setUp(false);
 					break;
 
 				case KeyEvent.VK_DOWN:
-					player.setDown(false);
+					player2.setDown(false);
 					break;
 
 				default:

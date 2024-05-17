@@ -6,11 +6,11 @@ import java.awt.event.KeyEvent;
 public class PlayerBlueKey implements Runnable {
 
 	private MainFrame mContext;
-	private PlayerBlue playerBlue;
+	private Player player1;
 
-	public PlayerBlueKey(MainFrame mContext, PlayerBlue playerBlue) {
+	public PlayerBlueKey(MainFrame mContext, Player player1) {
 		this.mContext = mContext;
-		this.playerBlue = playerBlue;
+		this.player1 = player1;
 	}
 
 	@Override
@@ -24,43 +24,43 @@ public class PlayerBlueKey implements Runnable {
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_A:
-					if (!playerBlue.isLeft() && !playerBlue.isLeftWallCrash()) {
-						playerBlue.setUp(false);
-						playerBlue.setDown(false);
-						playerBlue.setRight(false);
-						playerBlue.left();
+					if (!player1.isLeft() && !player1.isLeftWallCrash()) {
+						player1.setUp(false);
+						player1.setDown(false);
+						player1.setRight(false);
+						player1.left();
 					}
 					break;
 
 				case KeyEvent.VK_D:
-					if (!playerBlue.isRight() && !playerBlue.isRightWallCrash()) {
-						playerBlue.setUp(false);
-						playerBlue.setDown(false);
-						playerBlue.setLeft(false);
-						playerBlue.right();
+					if (!player1.isRight() && !player1.isRightWallCrash()) {
+						player1.setUp(false);
+						player1.setDown(false);
+						player1.setLeft(false);
+						player1.right();
 					}
 					break;
 
 				case KeyEvent.VK_W:
-					if (!playerBlue.isUp() && !playerBlue.isUpWallCrash()) {
-						playerBlue.setRight(false);
-						playerBlue.setDown(false);
-						playerBlue.setLeft(false);
-						playerBlue.up();
+					if (!player1.isUp() && !player1.isUpWallCrash()) {
+						player1.setRight(false);
+						player1.setDown(false);
+						player1.setLeft(false);
+						player1.up();
 					}
 					break;
 
 				case KeyEvent.VK_S:
-					if (!playerBlue.isDown() && !playerBlue.isDownWallCrash()) {
-						playerBlue.setUp(false);
-						playerBlue.setRight(false);
-						playerBlue.setLeft(false);
-						playerBlue.down();
+					if (!player1.isDown() && !player1.isDownWallCrash()) {
+						player1.setUp(false);
+						player1.setRight(false);
+						player1.setLeft(false);
+						player1.down();
 					}
 					break;
 
 //				case KeyEvent.VK_O:
-//					playerBlue.attack();
+//					player1.attack();
 //					break;
 
 				default:
@@ -74,22 +74,22 @@ public class PlayerBlueKey implements Runnable {
 				switch (e.getKeyCode()) {
 
 				case KeyEvent.VK_A:
-					playerBlue.setLeft(false);
+					player1.setLeft(false);
 					break;
 
 				case KeyEvent.VK_D:
-					playerBlue.setRight(false);
+					player1.setRight(false);
 					break;
 
 				case KeyEvent.VK_W:
-					playerBlue.setUp(false);
+					player1.setUp(false);
 					break;
 
 				case KeyEvent.VK_S:
-					playerBlue.setDown(false);
+					player1.setDown(false);
 					break;
 				case KeyEvent.VK_SHIFT:
-					playerBlue.attack();
+					player1.attack();
 				default:
 					break;
 				}

@@ -50,13 +50,13 @@ public class BackgroundImage extends JLabel {
 	}
 
 	public void setBackgroundImage(int i) {
-		if (i == 0) {
+		if (i == 0) { // 0(white)면 바닥
 			setIcon(floor);
 			imageStatus = 0;
-		} else if (i == 1) {
+		} else if (i == 1) { // 1(red)면 부숴지지 않는 상자 생성
 			setIcon(unbreakBox);
 			imageStatus = 1;
-		} else if (i == 2) {
+		} else if (i == 2) { // 2(blue)면 부숴지는 상자 생성
 			setIcon(breakBox);
 			imageStatus = 2;
 		}
@@ -115,25 +115,22 @@ public class BackgroundImage extends JLabel {
 	}
 
 	public void playerDie(int x, int y) {
-		int BlueX = mContext.playerBlue.getX() + 50;
-		int BlueY = mContext.playerBlue.getY() + 80;
-		int RedX = mContext.playerRed.getX() + 50;
-		int RedY = mContext.playerRed.getY() + 80;
+		int BlueX = mContext.player1.getX() + 50;
+		int BlueY = mContext.player1.getY() + 80;
+		int RedX = mContext.player2.getX() + 50;
+		int RedY = mContext.player2.getY() + 80;
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < BlueX && BlueX <= (i + 1) * 100 && j * 100 <= BlueY && BlueY <= (j + 1) * 100) {
 					if (i == x && j == y) {
-						mContext.playerBlue.blueDie();
+						mContext.player1.die(1);
 					}
 				}
 				if (i * 100 < RedX && RedX <= (i + 1) * 100 && j * 100 <= RedY && RedY <= (j + 1) * 100) {
 					if (i == x && j == y) {
-						mContext.playerRed.setLeft(false);
-						mContext.playerRed.setRight(false);
-						mContext.playerRed.setUp(false);
-						mContext.playerRed.setDown(false);
-						mContext.playerRed.redDie();
+						
+						mContext.player2.die(2);
 					}
 
 				}
