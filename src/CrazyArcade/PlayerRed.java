@@ -3,13 +3,32 @@ package CrazyArcade;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
+// Player 
+
+// PlayerBlue
+// 키보드 이벤트 오버라이드 처리 ( 직접 이벤트 구현)
+
+//PlayerRed
+//키보드 이벤트 오버라이드 처리 (직접 이벤트 구현) 
+
+// MainF
+// Player p1 = new PlayerBlue();
+//Player  p2 = new PlayerRed();
+
+
+// Player  n1 = new Player();
+// Player n2 = new Player();
+
+
 public class PlayerRed extends JLabel implements Moveable {
 
 	MainFrame mContext;
-
+	// 나의 겉모습 이미지 
+	
 	private int x;
 	private int y;
 	private int imageIconIndex;
+	int bubbleCountRed = 0;  //get set
 
 	private ImageIcon[] BazziUpImageArray;
 	private ImageIcon[] BazziDownImageArray;
@@ -26,7 +45,7 @@ public class PlayerRed extends JLabel implements Moveable {
 	private boolean upWallCrash;
 	private boolean downWallCrash;
 
-	private final int SPEED = 1;
+	private final int SPEED = 2;
 
 	PlayerWay playerWay;
 
@@ -128,17 +147,12 @@ public class PlayerRed extends JLabel implements Moveable {
 		BazziUpImageArray[3] = new ImageIcon("img/bazzi_Up4.png");
 		BazziUpImageArray[4] = new ImageIcon("img/bazzi_Up5.png");
 
-
 		BazziDownImageArray = new ImageIcon[5];
 		BazziDownImageArray[0] = new ImageIcon("img/bazzi_Down1.png");
 		BazziDownImageArray[1] = new ImageIcon("img/bazzi_Down2.png");
 		BazziDownImageArray[2] = new ImageIcon("img/bazzi_Down3.png");
 		BazziDownImageArray[3] = new ImageIcon("img/bazzi_Down4.png");
 		BazziDownImageArray[4] = new ImageIcon("img/bazzi_Down5.png");
-
-
-
-
 
 		x = 890;
 		y = 790;
@@ -160,7 +174,6 @@ public class PlayerRed extends JLabel implements Moveable {
 		setIcon(BazziDownImageArray[0]);
 		setSize(100, 100);
 		setLocation(x, y);
-
 
 		mContext.repaint();
 	}
@@ -336,8 +349,27 @@ public class PlayerRed extends JLabel implements Moveable {
 
 	public void attack() {
 
-		
-		new Thread(new Bubble(mContext, this)).start();
+		int playerPosX = x + 50;
+		int playerPosY = y + 80;
+		System.out.println(bubbleCountRed);
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
+						&& playerPosY <= (j + 1) * 100) {
+					if (mContext.backgroundImage[j][i].flag == false ) {
+						mContext.backgroundImage[j][i].flag = true;
+						Bubble bubble = new Bubble(mContext, this,j,i);
+						new Thread(bubble).start();
+						
+						
+					} else {
+						System.out.println("이미 버블이 있음");
+					}
+
+				}
+
+			}
+		}
 
 	}
 

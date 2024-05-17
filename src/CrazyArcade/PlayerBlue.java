@@ -7,11 +7,10 @@ public class PlayerBlue extends JLabel implements Moveable {
 
 	MainFrame mContext;
 
-	Bubble bubble;
-
 	private int x;
 	private int y;
 	private int imageIconIndex;
+	int bubbleCountBlue = 0;  //get set
 
 	private ImageIcon[] DaoUpImageArray;
 	private ImageIcon[] DaoDownImageArray;
@@ -338,16 +337,28 @@ public class PlayerBlue extends JLabel implements Moveable {
 	}
 
 	public void attack() {
-		bubble = new Bubble(mContext, this);
-		new Thread(bubble).start();
-	
+		int playerPosX = x + 50;
+		int playerPosY = y + 80;
 
+		for (int i = 0; i < 10; i++) {
+			for (int j = 0; j < 10; j++) {
+				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
+						&& playerPosY <= (j + 1) * 100) {
+					if (mContext.backgroundImage[j][i].flag == false) {
+						mContext.backgroundImage[j][i].flag = true;
+						new Thread(new Bubble(mContext, this,j,i)).start();
+				
+					}else {
+						System.out.println("이미 버블이 있음");
+					}
 
-		new Thread(new Bubble(mContext, this)).start();
+				}
+
+			}
+		}
+
 
 
 	}
-	
-	
 
 }

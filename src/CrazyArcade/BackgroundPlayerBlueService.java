@@ -40,28 +40,28 @@ public class BackgroundPlayerBlueService implements Runnable {
 					&& (leftFirstPositionColor == RED || leftFirstPositionColor == BLUE))
 					|| (playerBlue.playerWay == playerBlue.playerWay.LEFT
 							&& (leftSecondPositionColor == RED || leftSecondPositionColor == BLUE))) {
-				System.out.println("왼쪽막힘");
+				//System.out.println("왼쪽막힘");
 				playerBlue.setLeftWallCrash(true);
 				playerBlue.setLeft(false);
 			} else if ((playerBlue.playerWay == playerBlue.playerWay.RIGHT
 					&& (rightFirstPositionColor == RED || rightFirstPositionColor == BLUE))
 					|| (playerBlue.playerWay == playerBlue.playerWay.RIGHT
 							&& (rightSecondPositionColor == RED || rightSecondPositionColor == BLUE))) {
-				System.out.println("오른쪽막힘");
+				//System.out.println("오른쪽막힘");
 				playerBlue.setRightWallCrash(true);
 				playerBlue.setRight(false);
 			} else if ((playerBlue.playerWay == playerBlue.playerWay.UP
 					&& (upFirstPositionColor == RED || upFirstPositionColor == BLUE))
 					|| (playerBlue.playerWay == playerBlue.playerWay.UP
 							&& (upSecondPositionColor == RED || upSecondPositionColor == BLUE))) {
-				System.out.println("위쪽막힘");
+				//System.out.println("위쪽막힘");
 				playerBlue.setUpWallCrash(true);
 				playerBlue.setUp(false);
 			} else if ((playerBlue.playerWay == playerBlue.playerWay.DOWN
 					&& (downFirstPositionColor == RED || downFirstPositionColor == BLUE))
 					|| (playerBlue.playerWay == playerBlue.playerWay.DOWN
 							&& (downSecondPositionColor == RED || downSecondPositionColor == BLUE))) {
-				System.out.println("아래쪽막힘");
+				//System.out.println("아래쪽막힘");
 				playerBlue.setDownWallCrash(true);
 				playerBlue.setDown(false);
 			} else {
