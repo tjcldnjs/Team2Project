@@ -68,35 +68,35 @@ public class BackgroundImage extends JLabel {
 			@Override
 			public void run() {
 
-			
 				if (bombImage.equals("bomb")) {
+					playerDie(x, y);
 					setIcon(bomb);
-					playerDie(x,y);
-					mContext.reviseBufferImage(x, y);
 					clearbubble();
+
+					mContext.reviseBufferImage(x, y);
 
 				} else if (bombImage.equals("bombUp") && imageStatus != 1) {
-					setIcon(bombUp); 
-
-					playerDie(x,y);
+					playerDie(x, y);
+					setIcon(bombUp);
+					clearbubble();
 
 					mContext.reviseBufferImage(x, y);
-					clearbubble();
+
 				} else if (bombImage.equals("bombDown") && imageStatus != 1) {
+					playerDie(x, y);
 					setIcon(bombDown);
-					playerDie(x,y);
-					mContext.reviseBufferImage(x, y);
 					clearbubble();
+					mContext.reviseBufferImage(x, y);
 				} else if (bombImage.equals("bombLeft") && imageStatus != 1) {
+					playerDie(x, y);
 					setIcon(bombLeft);
-					playerDie(x,y);
-					mContext.reviseBufferImage(x, y);
 					clearbubble();
+					mContext.reviseBufferImage(x, y);
 				} else if (bombImage.equals("bombRight") && imageStatus != 1) {
+					playerDie(x, y);
 					setIcon(bombRight);
-					playerDie(x,y);
-					mContext.reviseBufferImage(x, y);
 					clearbubble();
+					mContext.reviseBufferImage(x, y);
 				}
 			}
 		}).start();
@@ -113,8 +113,8 @@ public class BackgroundImage extends JLabel {
 		flag = false;
 		return true;
 	}
-	
-	public void playerDie(int x,int y) {
+
+	public void playerDie(int x, int y) {
 		int BlueX = mContext.playerBlue.getX() + 50;
 		int BlueY = mContext.playerBlue.getY() + 80;
 		int RedX = mContext.playerRed.getX() + 50;
@@ -122,16 +122,18 @@ public class BackgroundImage extends JLabel {
 
 		for (int i = 0; i < 10; i++) {
 			for (int j = 0; j < 10; j++) {
-				if (i * 100 < BlueX && BlueX <= (i + 1) * 100 && j * 100 <= BlueY
-						&& BlueY <= (j + 1) * 100) {
-					if(i == x && j == y) {
-						mContext.playerBlue.setVisible(false);
+				if (i * 100 < BlueX && BlueX <= (i + 1) * 100 && j * 100 <= BlueY && BlueY <= (j + 1) * 100) {
+					if (i == x && j == y) {
+						mContext.playerBlue.blueDie();
 					}
 				}
-				if (i * 100 < RedX && RedX <= (i + 1) * 100 && j * 100 <= RedY
-						&& RedY <= (j + 1) * 100) {
-					if(i == x && j == y) {
-						mContext.playerRed.setVisible(false);
+				if (i * 100 < RedX && RedX <= (i + 1) * 100 && j * 100 <= RedY && RedY <= (j + 1) * 100) {
+					if (i == x && j == y) {
+						mContext.playerRed.setLeft(false);
+						mContext.playerRed.setRight(false);
+						mContext.playerRed.setUp(false);
+						mContext.playerRed.setDown(false);
+						mContext.playerRed.redDie();
 					}
 
 				}
