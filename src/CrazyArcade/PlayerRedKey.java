@@ -6,7 +6,7 @@ import java.awt.event.KeyEvent;
 public class PlayerRedKey implements Runnable {
 
 	private MainFrame mContext;
-	private PlayerRed player;
+	 PlayerRed player;
 
 	public PlayerRedKey(MainFrame mContext, PlayerRed player) {
 		this.mContext = mContext;

@@ -1,5 +1,7 @@
 package CrazyArcade;
 
+import java.awt.event.KeyEvent;
+
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -15,25 +17,24 @@ import javax.swing.JLabel;
 // Player p1 = new PlayerBlue();
 //Player  p2 = new PlayerRed();
 
-
 // Player  n1 = new Player();
 // Player n2 = new Player();
-
 
 public class PlayerRed extends JLabel implements Moveable {
 
 	MainFrame mContext;
-	// 나의 겉모습 이미지 
-	
+	// 나의 겉모습 이미지
+
 	private int x;
 	private int y;
 	private int imageIconIndex;
-	int bubbleCountRed = 0;  //get set
+	int bubbleCountRed = 0; // get set
 
 	private ImageIcon[] BazziUpImageArray;
 	private ImageIcon[] BazziDownImageArray;
 	private ImageIcon[] BazziRightImageArray;
 	private ImageIcon[] BazziLeftImageArray;
+	private ImageIcon[] BazziDieArray;
 
 	private boolean left;
 	private boolean right;
@@ -45,7 +46,7 @@ public class PlayerRed extends JLabel implements Moveable {
 	private boolean upWallCrash;
 	private boolean downWallCrash;
 
-	private final int SPEED = 2;
+	private final int SPEED = 1;
 
 	PlayerWay playerWay;
 
@@ -134,7 +135,7 @@ public class PlayerRed extends JLabel implements Moveable {
 		BazziLeftImageArray[2] = new ImageIcon("img/bazzi_Left3.png");
 		BazziLeftImageArray[3] = new ImageIcon("img/bazzi_Left4.png");
 
-		BazziRightImageArray = new ImageIcon[5];
+		BazziRightImageArray = new ImageIcon[4];
 		BazziRightImageArray[0] = new ImageIcon("img/bazzi_Right1.png");
 		BazziRightImageArray[1] = new ImageIcon("img/bazzi_Right2.png");
 		BazziRightImageArray[2] = new ImageIcon("img/bazzi_Right3.png");
@@ -153,6 +154,13 @@ public class PlayerRed extends JLabel implements Moveable {
 		BazziDownImageArray[2] = new ImageIcon("img/bazzi_Down3.png");
 		BazziDownImageArray[3] = new ImageIcon("img/bazzi_Down4.png");
 		BazziDownImageArray[4] = new ImageIcon("img/bazzi_Down5.png");
+
+		BazziDieArray = new ImageIcon[5];
+		BazziDieArray[0] = new ImageIcon("img/reddie1.png");
+		BazziDieArray[1] = new ImageIcon("img/reddie2.png");
+		BazziDieArray[2] = new ImageIcon("img/reddie3.png");
+		BazziDieArray[3] = new ImageIcon("img/reddie4.png");
+		BazziDieArray[4] = new ImageIcon("img/reddie5.png");
 
 		x = 890;
 		y = 790;
@@ -346,6 +354,25 @@ public class PlayerRed extends JLabel implements Moveable {
 			}
 		}).start();
 	}
+	public void redDie() {
+		new Thread(new Runnable() {
+			
+			@Override
+			public void run() {
+				for (int i = 0; i < BazziDieArray.length; i++) {
+
+					setIcon(BazziDieArray[i]);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				mContext.playerRed.setVisible(false);
+			}
+		}).start();
+
+	}
 
 	public void attack() {
 
@@ -356,12 +383,11 @@ public class PlayerRed extends JLabel implements Moveable {
 			for (int j = 0; j < 10; j++) {
 				if (i * 100 < playerPosX && playerPosX <= (i + 1) * 100 && j * 100 <= playerPosY
 						&& playerPosY <= (j + 1) * 100) {
-					if (mContext.backgroundImage[j][i].flag == false ) {
+					if (mContext.backgroundImage[j][i].flag == false) {
 						mContext.backgroundImage[j][i].flag = true;
-						Bubble bubble = new Bubble(mContext, this,j,i);
+						Bubble bubble = new Bubble(mContext, this, j, i);
 						new Thread(bubble).start();
-						
-						
+
 					} else {
 						System.out.println("이미 버블이 있음");
 					}

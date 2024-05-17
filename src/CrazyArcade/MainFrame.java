@@ -58,7 +58,7 @@ public class MainFrame extends JFrame {
 
 		blueService = new BackgroundPlayerBlueService(playerBlue);
 		redService = new BackgroundPlayerRedService(playerRed);
-
+		
 		new Thread(new PlayerRedKey(mContext, playerRed)).start();
 		new Thread(new PlayerBlueKey(mContext, playerBlue)).start();
 

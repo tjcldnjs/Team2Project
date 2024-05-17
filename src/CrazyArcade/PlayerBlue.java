@@ -16,6 +16,7 @@ public class PlayerBlue extends JLabel implements Moveable {
 	private ImageIcon[] DaoDownImageArray;
 	private ImageIcon[] DaoRightImageArray;
 	private ImageIcon[] DaoLeftImageArray;
+	private ImageIcon[] DaoDieArray;
 
 	private boolean left;
 	private boolean right;
@@ -143,6 +144,13 @@ public class PlayerBlue extends JLabel implements Moveable {
 		DaoRightImageArray[2] = new ImageIcon("img/Dao_Right3.png");
 		DaoRightImageArray[3] = new ImageIcon("img/Dao_Right4.png");
 		DaoRightImageArray[4] = new ImageIcon("img/Dao_Right5.png");
+		
+		DaoDieArray = new ImageIcon[5];
+		DaoDieArray[0] = new ImageIcon("img/bluedie1.png");
+		DaoDieArray[1] = new ImageIcon("img/bluedie2.png");
+		DaoDieArray[2] = new ImageIcon("img/bluedie3.png");
+		DaoDieArray[3] = new ImageIcon("img/bluedie4.png");
+		DaoDieArray[4] = new ImageIcon("img/bluedie5.png");
 
 		left = false;
 		right = false;
@@ -334,6 +342,26 @@ public class PlayerBlue extends JLabel implements Moveable {
 				}
 			}
 		}).start();
+	}
+	
+	public void blueDie() {
+		new Thread(new Runnable() {
+
+			@Override
+			public void run() {
+				for (int i = 0; i < DaoDieArray.length; i++) {
+					setIcon(DaoDieArray[i]);
+					try {
+						Thread.sleep(500);
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+				mContext.playerBlue.setVisible(false);
+				
+			}
+		}).start();
+
 	}
 
 	public void attack() {

@@ -7,16 +7,14 @@ public class Bubble extends JLabel implements Runnable {
 	MainFrame mContext;
 	PlayerBlue playerBlue;
 	PlayerRed playerRed;
-	
-	// static --> 공유 ---> 각자 정보 --> 멤버 변수 --> (시리얼 넘버, 사원 번호) 
-	// 1000 <--- 시리얼 
-	// 나의 고유 사원 번호  1000 <-- 나의 멤버 변수에 저장하고 , 시리얼 번호 증감 1 
-	
-	// 플리어가Red --> 5개  (Bubble, Bubble, Bubble , Bubble , Bubble - 색상 ) 
-	
-	// 플리어가Blue --> 5개 (Bubble, Bubble, Bubble , Bubble, ,Bubble - 색상  )
-	
-	
+
+	// static --> 공유 ---> 각자 정보 --> 멤버 변수 --> (시리얼 넘버, 사원 번호)
+	// 1000 <--- 시리얼
+	// 나의 고유 사원 번호 1000 <-- 나의 멤버 변수에 저장하고 , 시리얼 번호 증감 1
+
+	// 플리어가Red --> 5개 (Bubble, Bubble, Bubble , Bubble , Bubble - 색상 )
+
+	// 플리어가Blue --> 5개 (Bubble, Bubble, Bubble , Bubble, ,Bubble - 색상 )
 
 	int bubblePosX;
 	int bubblePosY;
@@ -28,6 +26,8 @@ public class Bubble extends JLabel implements Runnable {
 	private ImageIcon bubble;
 
 	private int imageChaneIndex;
+
+	boolean status = true;
 
 	private ImageIcon bombomb_Action__main;
 	private ImageIcon bombomb_Action_1;
@@ -41,6 +41,8 @@ public class Bubble extends JLabel implements Runnable {
 		playerPosY = playerRed.getY() + 80;
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
+		BubbleBackground bubbleBackground = new BubbleBackground(this, mContext);
+		new Thread(bubbleBackground).start();
 
 	}
 
@@ -52,6 +54,8 @@ public class Bubble extends JLabel implements Runnable {
 		playerPosX = playerBlue.getX() + 50;
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
+		BubbleBackground bubbleBackground = new BubbleBackground(this, mContext);
+		new Thread(bubbleBackground).start();
 
 	}
 
@@ -63,6 +67,7 @@ public class Bubble extends JLabel implements Runnable {
 
 	@Override
 	public void run() {
+
 		bubblePosX = jLabelPosY * 100;
 		bubblePosY = jLabelPosX * 100;
 
