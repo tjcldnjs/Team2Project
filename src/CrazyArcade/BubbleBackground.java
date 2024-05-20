@@ -32,13 +32,13 @@ public class BubbleBackground implements Runnable {
 		try {
 			Thread.sleep(300);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		boolean flag = true;
 		while (flag) {
-			//System.out.println("1");
-			System.out.println(bubblePosX);
+			// 버블 벽 생성
+			// 생성된 버블 상하좌우 통과되게 수정
+			//System.out.println(bubblePosX);
 			if (player2.isLeft()) {
 				if (bubblePosX < player2.getX() && (player2.getX() - bubblePosX <= 90)
 						&& bubblePosY < player2.getY() + 80 && player2.getY() + 80 <= bubblePosY + 100) {
@@ -97,7 +97,7 @@ public class BubbleBackground implements Runnable {
 				}
 
 			}
-
+			
 			if (bubble.status == false) {
 				player2.setLeft(true);
 				player1.setLeft(true);

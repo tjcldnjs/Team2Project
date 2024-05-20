@@ -27,7 +27,7 @@ public class BackgroundImage extends JLabel {
 		this.mContext = mContext;
 		this.x = j * 100;
 		this.y = i * 100;
-		unbreakBox = new ImageIcon("img/box_unbreak.png");
+		unbreakBox = new ImageIcon("img/vilige_Box_M1.png");
 		breakBox = new ImageIcon("img/box_breakable.png");
 		floor = new ImageIcon("img/main_background1.png");
 
@@ -67,7 +67,8 @@ public class BackgroundImage extends JLabel {
 
 			@Override
 			public void run() {
-
+				// 버블이 터진후 바닥까지 없어지던 상황을
+				// reviseBufferImage로 바닥 다시 깔아줌
 				if (bombImage.equals("bomb")) {
 					playerDie(x, y);
 					setIcon(bomb);
@@ -129,7 +130,7 @@ public class BackgroundImage extends JLabel {
 				}
 				if (i * 100 < RedX && RedX <= (i + 1) * 100 && j * 100 <= RedY && RedY <= (j + 1) * 100) {
 					if (i == x && j == y) {
-						
+
 						mContext.player2.die(2);
 					}
 

@@ -11,6 +11,7 @@ public class MapData {
 	}
 
 	public void setMap(int mapNum) {
+		// 입력받은 번호에 따라 만들어 둔 맵 나오게 하기
 		if (mapNum == 1) {
 			mContext.panelArray[0][0].setBackground(Color.red);
 			mContext.panelArray[0][3].setBackground(Color.blue);
@@ -40,7 +41,7 @@ public class MapData {
 
 				}
 			}
-			// 1
+			// 1행
 
 			mContext.panelArray[0][3].setBackground(Color.blue);
 			mContext.panelArray[0][4].setBackground(Color.blue);

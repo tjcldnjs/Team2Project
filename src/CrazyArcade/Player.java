@@ -114,6 +114,7 @@ public class Player extends JLabel implements Moveable {
 	}
 
 	private void initData() {
+		// 걷는 모션
 		if (playerNum == 2) {
 			LeftImageArray = new ImageIcon[5];
 			LeftImageArray[0] = new ImageIcon("img/Dao_Left1.png");
@@ -192,7 +193,6 @@ public class Player extends JLabel implements Moveable {
 			playerX = 890;
 			playerY = 790;
 		}
-		// System.out.println("확인");
 		left = false;
 		right = false;
 		up = false;

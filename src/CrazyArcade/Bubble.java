@@ -23,22 +23,15 @@ public class Bubble extends JLabel implements Runnable {
 	int jLabelPosX;
 	int jLabelPosY;
 
-	private ImageIcon bubble;
-
 	private int imageChaneIndex;
 
 	boolean status = true;
-
-	private ImageIcon bombomb_Action__main;
-	private ImageIcon bombomb_Action_1;
-	private ImageIcon bombomb_Action_2;
-	private ImageIcon bombomb_Action_3;
 
 	public Bubble(MainFrame mContext, int playerNum, int jLabelPosx, int jLabelPosY) {
 		this.mContext = mContext;
 		this.player1 = mContext.player1;
 		this.player2 = mContext.player2;
-		
+
 		this.jLabelPosX = jLabelPosx;
 		this.jLabelPosY = jLabelPosY;
 		BubbleBackground bubbleBackground = new BubbleBackground(this, mContext);
@@ -47,14 +40,6 @@ public class Bubble extends JLabel implements Runnable {
 	}
 
 	private ImageIcon[] imageChangeArray;
-
-	
-
-	private ImageIcon bomb;
-	private ImageIcon bombdown;
-	private ImageIcon bombleft;
-	private ImageIcon bombright;
-	private ImageIcon bombup;
 
 	@Override
 	public void run() {
@@ -69,7 +54,7 @@ public class Bubble extends JLabel implements Runnable {
 		imageChangeArray[2] = new ImageIcon("img/bomb_Action__2.png");
 		imageChangeArray[3] = new ImageIcon("img/bomb_Action__3.png");
 
-		setIcon(bombomb_Action__main);
+		setIcon(imageChangeArray[imageChaneIndex]);
 		setSize(100, 100);
 		setLocation(bubblePosX, bubblePosY);
 		imageChaneIndex = 0;
